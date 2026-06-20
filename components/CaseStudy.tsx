@@ -102,7 +102,7 @@ function CaseStudyCard({
       <div className="case-image-panel">
         <div className="case-image-frame">
           <Image
-            className="w-full h-auto rounded-lg shadow-lg"
+            className="w-full aspect-[16/9] object-cover object-left-top rounded-lg shadow-lg"
             src={project.image}
             alt={project.alt}
             width={project.width}

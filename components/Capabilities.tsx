@@ -40,15 +40,6 @@ export function Capabilities() {
         +
       </span>
       <div className="capabilities-heading">
-        <motion.span
-          className="section-kicker mono-tag"
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.8 }}
-          transition={{ duration: 0.66, ease: [0.16, 1, 0.3, 1] }}
-        >
-          // SYS.CAPABILITIES
-        </motion.span>
         <motion.h2
           initial={{ opacity: 0, y: 26 }}
           whileInView={{ opacity: 1, y: 0 }}

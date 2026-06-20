@@ -3,7 +3,13 @@
 import { motion } from "framer-motion";
 import { BackgroundField } from "@/components/BackgroundField";
 
-const buildSignals = ["AI Integrations", "Web & App Design", "Custom Software"];
+const buildSignals = [
+  "Full-Stack Web Applications",
+  "Mobile App Interface Design",
+  "Custom AI & LLM Integrations",
+  "Enterprise Software Platforms",
+  "Premium B2B Brand Identity"
+];
 
 function WordReveal({
   text,
