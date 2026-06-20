@@ -28,7 +28,7 @@ const caseStudies = [
   },
   {
     eyebrow: "Corporate design overhaul",
-    title: "RappConsulting.org",
+    title: "RappConsulting",
     description:
       "Designed and developed a high-conversion corporate website. Overhauled the digital brand identity and rebuilt the web architecture to establish executive-grade trust and drive enterprise consulting leads.",
     tags: ["Brand system", "Web design", "B2B conversion"],
