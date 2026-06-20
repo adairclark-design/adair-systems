@@ -836,10 +836,13 @@ main > * {
 .case-copy h3 {
   margin: 28px 0 0;
   color: #fff;
-  font-size: clamp(2.45rem, 5vw, 4rem);
+  font-size: clamp(1.85rem, 3.75vw, 3rem);
   line-height: 0.96;
   font-weight: 740;
   letter-spacing: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .case-copy p {
@@ -1047,7 +1050,7 @@ main > * {
 
   .case-copy h3 {
     margin-top: 28px;
-    font-size: 2.28rem;
+    font-size: 1.7rem;
   }
 
   .case-copy p {
@@ -1079,7 +1082,7 @@ main > * {
   }
 
   .case-copy h3 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 }
 
