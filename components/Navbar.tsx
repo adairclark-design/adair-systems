@@ -102,20 +102,22 @@ export function Navbar() {
       <nav className="nav-shell relative" aria-label="Primary navigation">
         <BrandLogo />
 
-        <div
-          className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.035] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-xl lg:flex"
-          aria-label="Page sections"
-        >
-          {navigationItems.map((item) => (
-            <button
-              className="min-h-9 cursor-pointer rounded-full border-0 bg-transparent px-3.5 text-[0.76rem] font-semibold text-slate-400 transition duration-200 hover:bg-white/[0.075] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/45"
-              key={item.target}
-              type="button"
-              onClick={() => scrollToSection(item.target)}
-            >
-              {item.label}
-            </button>
-          ))}
+        <div className="absolute inset-y-0 left-1/2 hidden -translate-x-1/2 items-center lg:flex">
+          <div
+            className="flex h-11 items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.035] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-xl"
+            aria-label="Page sections"
+          >
+            {navigationItems.map((item) => (
+              <button
+                className="h-9 cursor-pointer rounded-full border-0 bg-transparent px-4 text-sm font-semibold leading-none text-slate-400 transition duration-200 hover:bg-white/[0.075] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/45"
+                key={item.target}
+                type="button"
+                onClick={() => scrollToSection(item.target)}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="flex items-center gap-2 sm:gap-6">

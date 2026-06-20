@@ -159,27 +159,27 @@ function CaseStudyRow({
             }}
           >
             <motion.div
-              className="grid gap-6 border-t border-white/[0.08] p-4 sm:p-6 lg:grid-cols-[1.22fr_0.78fr] lg:gap-8 lg:p-8"
+              className="flex flex-col gap-8 border-t border-white/[0.08] p-4 sm:p-6 lg:p-8"
               initial={{ y: 18 }}
               animate={{ y: 0 }}
               exit={{ y: 10 }}
               transition={{ duration: 0.52, ease: [0.16, 1, 0.3, 1] }}
             >
-              <figure className="m-0 min-w-0 rounded-[6px] border border-white/10 bg-black/25 p-2 shadow-[0_20px_70px_rgba(0,0,0,0.28),inset_0_1px_0_rgba(255,255,255,0.08)]">
+              <figure className="m-0 w-full min-w-0 rounded-[6px] border border-white/10 bg-black/25 p-2 shadow-[0_20px_70px_rgba(0,0,0,0.28),inset_0_1px_0_rgba(255,255,255,0.08)]">
                 <Image
                   className="block h-auto w-full rounded-[2px]"
                   src={project.image}
                   alt={project.alt}
                   width={project.width}
                   height={project.height}
-                  sizes="(max-width: 1023px) calc(100vw - 80px), 680px"
+                  sizes="(max-width: 1023px) calc(100vw - 80px), (max-width: 1180px) calc(100vw - 96px), 1090px"
                   quality={90}
                 />
               </figure>
 
-              <div className="flex min-w-0 flex-col justify-between p-2 lg:py-3">
-                <p className="m-0 text-sm leading-6 text-slate-300/75 sm:text-base sm:leading-7">{project.description}</p>
-                <div className="mt-8 flex flex-wrap gap-2">
+              <div className="mx-auto flex w-full max-w-3xl min-w-0 flex-col px-2 pb-2">
+                <p className="m-0 max-w-3xl text-sm leading-6 text-slate-300/75 sm:text-base sm:leading-7">{project.description}</p>
+                <div className="mt-6 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
                       className="inline-flex min-h-8 items-center rounded-full border border-white/10 bg-white/[0.045] px-3 text-xs font-semibold text-slate-300/80"
