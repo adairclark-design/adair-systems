@@ -44,7 +44,7 @@ export function Methodology() {
       </span>
 
       <div className="mx-auto w-[var(--container)]">
-        <div className="grid items-end gap-8 lg:grid-cols-[1.18fr_0.82fr] lg:gap-16">
+        <div className="grid items-start gap-8 lg:grid-cols-[1.18fr_0.82fr] lg:gap-16">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -58,7 +58,7 @@ export function Methodology() {
           </motion.div>
 
           <motion.p
-            className="m-0 max-w-2xl text-base leading-7 text-slate-300/75 sm:text-lg sm:leading-8"
+            className="m-0 max-w-2xl text-base leading-7 text-slate-300/75 sm:text-lg sm:leading-8 lg:pt-12"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
@@ -69,7 +69,7 @@ export function Methodology() {
         </div>
 
         <motion.div
-          className="mt-14 grid overflow-hidden rounded-[8px] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.075),rgba(255,255,255,0.025)),rgba(7,7,15,0.72)] shadow-[0_36px_120px_rgba(0,0,0,0.38),0_0_72px_rgba(100,92,255,0.08)] backdrop-blur-2xl lg:grid-cols-[0.9fr_1.1fr]"
+          className="mt-14 grid overflow-hidden rounded-[8px] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.075),rgba(255,255,255,0.025)),rgba(7,7,15,0.72)] shadow-[0_36px_120px_rgba(0,0,0,0.38),0_0_72px_rgba(100,92,255,0.08)] backdrop-blur-2xl lg:grid-cols-[1.05fr_0.95fr]"
           initial={{ opacity: 0, y: 42 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.05 }}
@@ -78,9 +78,15 @@ export function Methodology() {
           <div className="flex flex-col justify-between border-b border-white/10 p-8 sm:p-10 lg:border-b-0 lg:border-r lg:p-12">
             <div>
               <span className="mono-tag text-xs text-slate-400">[ OPERATING MODEL ]</span>
-              <h3 className="mt-8 max-w-[12ch] text-3xl font-extrabold leading-[1.08] text-white sm:text-4xl">
-                AI provides parallel execution. I provide technical judgment.
-              </h3>
+              <div className="mt-8 space-y-5">
+                <h3 className="m-0 max-w-none text-3xl font-extrabold leading-[1.04] text-white sm:text-4xl lg:text-[2.55rem] xl:text-5xl">
+                  AI provides <span className="text-cyan-100">parallel execution.</span>
+                </h3>
+                <div className="h-px w-full bg-gradient-to-r from-cyan-300/45 via-indigo-300/20 to-transparent" aria-hidden="true" />
+                <h3 className="m-0 max-w-none text-3xl font-extrabold leading-[1.04] text-white sm:text-4xl lg:text-[2.55rem] xl:text-5xl">
+                  I provide <span className="text-indigo-100">technical judgment.</span>
+                </h3>
+              </div>
               <p className="mt-6 max-w-xl text-base leading-7 text-slate-300/70">
                 The advantage is not generated code. It is disciplined orchestration: the right agents, the right context, explicit system constraints, and senior review at every integration point.
               </p>
