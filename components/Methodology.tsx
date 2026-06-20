@@ -80,11 +80,11 @@ export function Methodology() {
               <span className="mono-tag text-xs text-slate-400">[ OPERATING MODEL ]</span>
               <div className="mt-8 space-y-5">
                 <h3 className="m-0 max-w-none text-3xl font-extrabold leading-[1.04] text-white sm:text-4xl lg:text-[2.55rem] xl:text-5xl">
-                  AI provides <span className="text-[#66ffcc] drop-shadow-[0_0_18px_rgba(102,255,204,0.28)]">parallel execution.</span>
+                  AI provides <span className="text-[#e0fff5]/90 drop-shadow-[0_0_18px_rgba(102,255,204,0.18)]">parallel execution.</span>
                 </h3>
                 <div className="h-px w-full bg-gradient-to-r from-cyan-300/45 via-indigo-300/20 to-transparent" aria-hidden="true" />
                 <h3 className="m-0 max-w-none text-3xl font-extrabold leading-[1.04] text-white sm:text-4xl lg:text-[2.55rem] xl:text-5xl">
-                  I provide <span className="text-[#ba66ff] drop-shadow-[0_0_18px_rgba(186,102,255,0.28)]">technical judgment.</span>
+                  I provide <span className="text-[#f0e6ff]/90 drop-shadow-[0_0_18px_rgba(186,102,255,0.18)]">technical judgment.</span>
                 </h3>
               </div>
               <p className="mt-6 max-w-xl text-base leading-7 text-slate-300/70">
