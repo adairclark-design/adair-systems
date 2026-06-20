@@ -8,7 +8,7 @@ const caseStudies = [
     eyebrow: "Flagship AI product",
     title: "Tristan's Fitness Platform",
     description:
-      "A custom-built, AI-driven personal training application that turns coaching logic into a polished client experience.",
+      "Architected and deployed a comprehensive, full-stack fitness application. Built a custom client portal, an AI-powered nutrition planning engine, and a proprietary workout tracking system to digitize and scale their coaching business.",
     tags: ["AI planning", "Client UX", "Performance systems"],
     image: "/tristan-app.png",
     alt: "Tristan's Fitness Platform training plan and nutrition dashboard interface",
@@ -19,7 +19,7 @@ const caseStudies = [
     eyebrow: "Agricultural intelligence",
     title: "AcreLogic",
     description:
-      "An intelligent gardening and agricultural application designed to make complex land decisions feel visual, calm, and actionable.",
+      "Engineered a data-driven agricultural intelligence platform. Developed complex mapping interfaces and decision-support algorithms to help farmers visualize land data and automate crop planning.",
     tags: ["Decision support", "Field workflows", "Applied AI"],
     image: "/acrelogic.png",
     alt: "AcreLogic crop selection interface for intelligent gardening and agriculture planning",
@@ -30,7 +30,7 @@ const caseStudies = [
     eyebrow: "Corporate design overhaul",
     title: "RappConsulting.org",
     description:
-      "A premium web presence rebuilt around trust, clarity, and executive-grade presentation for a corporate consulting audience.",
+      "Designed and developed a high-conversion corporate website. Overhauled the digital brand identity and rebuilt the web architecture to establish executive-grade trust and drive enterprise consulting leads.",
     tags: ["Brand system", "Web design", "B2B conversion"],
     image: "/rapp-consulting.png",
     alt: "Rapp Consulting premium nonprofit consulting website homepage redesign",
@@ -41,7 +41,7 @@ const caseStudies = [
     eyebrow: "Advanced backend capability",
     title: "Polyvision Integration",
     description:
-      "A deep intelligence layer showcasing orchestration, backend reasoning, and high-signal systems architecture behind the interface.",
+      "Built a highly secure, scalable backend intelligence layer. Designed custom API architectures and integrated advanced machine learning orchestration to power predictive data analytics at scale.",
     tags: ["Backend logic", "Data systems", "Intelligence layer"],
     image: "/polyvision.png",
     alt: "PolyVision AI edge prediction market intelligence landing page",
@@ -139,13 +139,18 @@ export function CaseStudy() {
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.8 }}
-          transition={{ duration: 0.68, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.66, ease: [0.16, 1, 0.3, 1] }}
         >
-          // SYS.ARCH.01
+          [ PORTFOLIO ]
         </motion.span>
-        <h2>
-          <ScrollWords text="Systems that look expensive because the thinking is expensive." />
-        </h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 26 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.72 }}
+          transition={{ duration: 0.76, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <ScrollWords text="Premium applications engineered to scale your business." />
+        </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

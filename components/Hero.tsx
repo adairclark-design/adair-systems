@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { BackgroundField } from "@/components/BackgroundField";
 
-const buildSignals = ["AI programming", "Interface craft", "Business architecture"];
+const buildSignals = ["AI Integrations", "Web & App Design", "Custom Software"];
 
 function WordReveal({
   text,
@@ -72,8 +72,8 @@ export function Hero() {
           <h1 className="hero-title" aria-label="Intelligent Architecture.">
             <WordReveal text="Intelligent Architecture." delay={0.16} />
           </h1>
-          <p className="hero-subhead" aria-label="World-Class Design. Founder-grade surfaces and intelligent systems engineered by Adair Clark.">
-            <WordReveal text="World-Class Design. Founder-grade surfaces and intelligent systems engineered by Adair Clark." delay={0.42} />
+          <p className="hero-subhead" aria-label="World-Class Design. Premium web applications and intelligent systems engineered by Adair Clark.">
+            <WordReveal text="World-Class Design. Premium web applications and intelligent systems engineered by Adair Clark." delay={0.42} />
           </p>
           <motion.div
             className="hero-actions"
@@ -96,7 +96,7 @@ export function Hero() {
           <div className="hologram-orbit" />
           <div className="hologram-orbit hologram-orbit-two" />
           <div className="hologram-panel">
-            <span className="hologram-label">[ STATUS: ACTIVE ]</span>
+            <span className="hologram-label">[ CAPABILITIES ]</span>
             <strong>Intelligence with a beautiful surface.</strong>
           </div>
           <div className="hologram-stack">

@@ -4,30 +4,30 @@ import { motion } from "framer-motion";
 
 const capabilities = [
   {
-    meta: "// UX.02",
-    title: "Interface Craft",
-    body: "High-performance frontends engineered with React, Framer Motion, and Tailwind CSS. Built for speed, accessibility, and conversion.",
+    meta: "[ FRONTEND DESIGN ]",
+    title: "Premium Web & App Design",
+    body: "Beautiful, high-performance websites and user interfaces built for speed, accessibility, and conversion.",
     stat: "Pixel systems",
     className: "md:col-span-2"
   },
   {
-    meta: "[ ACTIVE ]",
-    title: "Platform Builds",
-    body: "Secure, scalable web applications powered by Next.js and TypeScript. Connecting data and teams into a single polished workflow.",
+    meta: "[ FULL-STACK APPS ]",
+    title: "Custom Software Applications",
+    body: "Secure, scalable web applications connecting complex data and teams into a single polished workflow.",
     stat: "Full stack",
     className: "md:col-span-1"
   },
   {
-    meta: "// API.03",
-    title: "Integration Intelligence",
-    body: "Robust backend systems using Node.js. REST/GraphQL APIs, secure data pipelines, and intelligent AI/LLM automation layers.",
+    meta: "[ BACKEND & AI ]",
+    title: "AI & Backend Architecture",
+    body: "Robust backend systems, secure data pipelines, and custom AI/LLM automation to scale your business operations.",
     stat: "Ops logic",
     className: "md:col-span-1"
   },
   {
-    meta: "// BRAND.04",
-    title: "B2B Presence",
-    body: "Premium, SEO-optimized corporate sites for ambitious companies. We build the technical trust layer needed before the first sales call.",
+    meta: "[ CORPORATE SITES ]",
+    title: "Corporate Web Presence",
+    body: "Premium, SEO-optimized corporate sites. We build the technical trust layer needed to convert high-value clients.",
     stat: "Trust layer",
     className: "md:col-span-2"
   }
