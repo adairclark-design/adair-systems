@@ -4,31 +4,31 @@ import { motion } from "framer-motion";
 
 const capabilities = [
   {
-    meta: "[ FRONTEND DESIGN ]",
-    title: "Premium Web & App Design",
-    body: "Beautiful, high-performance websites and user interfaces built for speed, accessibility, and conversion.",
-    stat: "Pixel systems",
+    meta: "[ AGENT ORCHESTRATION ]",
+    title: "Multi-Agent Engineering Systems",
+    body: "I direct specialized AI agents across product strategy, frontend, backend, data, and QA—turning one business objective into coordinated production work.",
+    stat: "Parallel execution",
     className: "md:col-span-2"
   },
   {
-    meta: "[ FULL-STACK APPS ]",
-    title: "Custom Software Applications",
-    body: "Secure, scalable web applications connecting complex data and teams into a single polished workflow.",
-    stat: "Full stack",
+    meta: "[ SPECIFICATION DESIGN ]",
+    title: "Advanced Prompt Architecture",
+    body: "Ambiguous requirements become precise system prompts, constraints, acceptance criteria, and implementation plans that agents can execute reliably.",
+    stat: "Context control",
     className: "md:col-span-1"
   },
   {
-    meta: "[ BACKEND & AI ]",
-    title: "AI & Backend Architecture",
-    body: "Robust backend systems, secure data pipelines, and custom AI/LLM automation to scale your business operations.",
-    stat: "Ops logic",
+    meta: "[ TECHNICAL DIRECTION ]",
+    title: "Human-Governed AI Delivery",
+    body: "I review architecture, resolve agent conflicts, enforce security and quality, and remain accountable for every system decision that ships.",
+    stat: "Expert oversight",
     className: "md:col-span-1"
   },
   {
-    meta: "[ CORPORATE SITES ]",
-    title: "Corporate Web Presence",
-    body: "Premium, SEO-optimized corporate sites. We build the technical trust layer needed to convert high-value clients.",
-    stat: "Trust layer",
+    meta: "[ ACCELERATED DELIVERY ]",
+    title: "AI-Accelerated Full-Stack Deployment",
+    body: "Build, test, integration, and release workflows run in parallel to compress delivery cycles without trading away maintainability or polish.",
+    stat: "Ship velocity",
     className: "md:col-span-2"
   }
 ];
@@ -46,7 +46,7 @@ export function Capabilities() {
           viewport={{ once: true, amount: 0.72 }}
           transition={{ duration: 0.76, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
         >
-          Strategy, systems, and surfaces in one build partner.
+          One technical director. An orchestrated engineering system.
         </motion.h2>
       </div>
       <div className="bento-grid grid-cols-1 md:grid-cols-3">

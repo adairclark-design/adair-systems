@@ -10,11 +10,11 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: "Adair Systems",
-  description: "Intelligent Architecture. World-Class Design.",
+  description: "Agentic engineering and AI-directed full-stack software architecture for ambitious companies.",
   metadataBase: new URL("https://adair.systems"),
   openGraph: {
     title: "Adair Systems",
-    description: "Intelligent Architecture. World-Class Design.",
+    description: "Agentic engineering and AI-directed full-stack software architecture for ambitious companies.",
     url: "https://adair.systems",
     siteName: "Adair Systems",
     type: "website"

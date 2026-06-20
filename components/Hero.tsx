@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { BackgroundField } from "@/components/BackgroundField";
 
 const buildSignals = [
-  "Full-Stack Web Applications",
-  "Mobile App Interface Design",
-  "Custom AI & LLM Integrations",
-  "Enterprise Software Platforms",
-  "Premium B2B Brand Identity"
+  "Multi-Agent Product Orchestration",
+  "Advanced Prompt Architecture",
+  "Full-Stack Systems Direction",
+  "Human-Governed Validation",
+  "AI-Accelerated Deployment"
 ];
 
 function WordReveal({
@@ -73,13 +73,13 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
-            Boutique systems studio for ambitious companies
+            Agentic engineering studio for ambitious companies
           </motion.p>
           <h1 className="hero-title" aria-label="Intelligent Architecture.">
             <WordReveal text="Intelligent Architecture." delay={0.16} />
           </h1>
-          <p className="hero-subhead" aria-label="World-Class Design. Premium web applications and intelligent systems engineered by Adair Clark.">
-            <WordReveal text="World-Class Design. Premium web applications and intelligent systems engineered by Adair Clark." delay={0.42} />
+          <p className="hero-subhead" aria-label="Agentic Engineering. World-Class Design. Enterprise software directed by Adair Clark and executed through specialized AI systems.">
+            <WordReveal text="Agentic Engineering. World-Class Design. Enterprise software directed by Adair Clark and executed through specialized AI systems." delay={0.42} />
           </p>
           <motion.div
             className="hero-actions"
@@ -87,8 +87,8 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.72, ease: [0.16, 1, 0.3, 1] }}
           >
-            <a className="primary-cta" href="#featured-architecture">
-              Explore Our Work
+            <a className="primary-cta" href="mailto:hello@adair.systems?subject=Agentic%20Build">
+              Start an Agentic Build
             </a>
           </motion.div>
         </motion.div>
@@ -103,7 +103,7 @@ export function Hero() {
           <div className="hologram-orbit hologram-orbit-two" />
           <div className="hologram-panel">
             <span className="hologram-label">[ CAPABILITIES ]</span>
-            <strong>Intelligence with a beautiful surface.</strong>
+            <strong>One technical director. Multiple specialized agents.</strong>
           </div>
           <div className="hologram-stack">
             {buildSignals.map((signal, index) => (

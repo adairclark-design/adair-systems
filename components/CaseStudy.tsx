@@ -5,44 +5,44 @@ import { motion } from "framer-motion";
 
 const caseStudies = [
   {
-    eyebrow: "Flagship AI product",
+    eyebrow: "Agentic product architecture",
     title: "Tristan's Fitness Platform",
     description:
-      "Architected and deployed a comprehensive, full-stack fitness application. Built a custom client portal, an AI-powered nutrition planning engine, and a proprietary workout tracking system to digitize and scale their coaching business.",
-    tags: ["AI planning", "Client UX", "Performance systems"],
+      "Directed a multi-surface product build spanning client onboarding, training workflows, workout tracking, and AI-assisted nutrition planning. Specialized agents advanced frontend, backend, and product logic in parallel while I governed the architecture and integration layer.",
+    tags: ["Agentic full stack", "AI planning", "Client platform"],
     image: "/tristan-app.png",
     alt: "Tristan's Fitness Platform training plan and nutrition dashboard interface",
     width: 3012,
     height: 1610
   },
   {
-    eyebrow: "Agricultural intelligence",
+    eyebrow: "Orchestrated decision system",
     title: "AcreLogic",
     description:
-      "Engineered a data-driven agricultural intelligence platform. Developed complex mapping interfaces and decision-support algorithms to help farmers visualize land data and automate crop planning.",
-    tags: ["Decision support", "Field workflows", "Applied AI"],
+      "Orchestrated a data-rich agricultural platform combining crop intelligence, planning rules, search, and high-density interaction design. Agent teams handled data modeling, interface systems, and decision logic concurrently, compressing a complex product into one cohesive experience.",
+    tags: ["Agent orchestration", "Decision systems", "Data-rich UX"],
     image: "/acrelogic.png",
     alt: "AcreLogic crop selection interface for intelligent gardening and agriculture planning",
     width: 2932,
     height: 1580
   },
   {
-    eyebrow: "Corporate design overhaul",
+    eyebrow: "AI-accelerated brand platform",
     title: "RappConsulting",
     description:
-      "Designed and developed a high-conversion corporate website. Overhauled the digital brand identity and rebuilt the web architecture to establish executive-grade trust and drive enterprise consulting leads.",
-    tags: ["Brand system", "Web design", "B2B conversion"],
+      "Directed an AI-accelerated redesign across brand language, content architecture, responsive components, and conversion flows. The orchestration model moved strategy, design, and implementation forward together while preserving a deliberate executive-grade finish.",
+    tags: ["AI-directed design", "B2B systems", "Rapid deployment"],
     image: "/rapp-consulting.png",
     alt: "Rapp Consulting premium nonprofit consulting website homepage redesign",
     width: 2934,
     height: 1588
   },
   {
-    eyebrow: "Advanced backend capability",
+    eyebrow: "Multi-agent intelligence layer",
     title: "Polyvision Integration",
     description:
-      "Built a highly secure, scalable backend intelligence layer. Designed custom API architectures and integrated advanced machine learning orchestration to power predictive data analytics at scale.",
-    tags: ["Backend logic", "Data systems", "Intelligence layer"],
+      "Directed a real-time intelligence product across market data ingestion, API architecture, alerting, and LLM-assisted interpretation. Agentic execution coordinated the interface and backend workstreams while I controlled system boundaries, integration quality, and release readiness.",
+    tags: ["LLM orchestration", "API architecture", "Realtime intelligence"],
     image: "/polyvision.png",
     alt: "PolyVision AI edge prediction market intelligence landing page",
     width: 2936,
