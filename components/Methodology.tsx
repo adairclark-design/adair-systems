@@ -52,7 +52,7 @@ export function Methodology() {
             transition={{ duration: 0.76, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="mono-tag text-xs text-cyan-100/70">[ AGENTIC METHODOLOGY ]</span>
-            <h2 className="mt-6 max-w-[13ch] text-4xl font-extrabold leading-[1.02] text-white sm:text-5xl lg:text-6xl">
+            <h2 className="mt-6 max-w-[13ch] text-[1.6875rem] font-extrabold leading-[1.02] text-white sm:text-4xl lg:text-[2.8125rem]">
               Direction is the engineering multiplier.
             </h2>
           </motion.div>
@@ -80,11 +80,11 @@ export function Methodology() {
               <span className="mono-tag text-xs text-slate-400">[ OPERATING MODEL ]</span>
               <div className="mt-8 space-y-5">
                 <h3 className="m-0 max-w-none text-3xl font-extrabold leading-[1.04] text-white sm:text-4xl lg:text-[2.55rem] xl:text-5xl">
-                  AI provides <span className="text-cyan-100">parallel execution.</span>
+                  AI provides <span className="text-cyan-300 drop-shadow-[0_0_18px_rgba(34,211,238,0.28)]">parallel execution.</span>
                 </h3>
                 <div className="h-px w-full bg-gradient-to-r from-cyan-300/45 via-indigo-300/20 to-transparent" aria-hidden="true" />
                 <h3 className="m-0 max-w-none text-3xl font-extrabold leading-[1.04] text-white sm:text-4xl lg:text-[2.55rem] xl:text-5xl">
-                  I provide <span className="text-indigo-100">technical judgment.</span>
+                  I provide <span className="text-violet-300 drop-shadow-[0_0_18px_rgba(167,139,250,0.28)]">technical judgment.</span>
                 </h3>
               </div>
               <p className="mt-6 max-w-xl text-base leading-7 text-slate-300/70">

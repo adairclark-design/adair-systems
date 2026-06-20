@@ -5,6 +5,25 @@ import { Network } from "lucide-react";
 
 const brandName = "Adair Systems";
 
+const navigationItems = [
+  { label: "Home", target: "top" },
+  { label: "Capabilities", target: "capabilities" },
+  { label: "Architecture", target: "featured-architecture" },
+  { label: "Methodology", target: "methodology" }
+];
+
+function scrollToSection(target: string) {
+  if (target === "top") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+
+  document.getElementById(target)?.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
 function BrandLogo() {
   return (
     <a
@@ -80,8 +99,25 @@ export function Navbar() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
     >
-      <nav className="nav-shell" aria-label="Primary navigation">
+      <nav className="nav-shell relative" aria-label="Primary navigation">
         <BrandLogo />
+
+        <div
+          className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.035] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-xl lg:flex"
+          aria-label="Page sections"
+        >
+          {navigationItems.map((item) => (
+            <button
+              className="min-h-9 cursor-pointer rounded-full border-0 bg-transparent px-3.5 text-[0.76rem] font-semibold text-slate-400 transition duration-200 hover:bg-white/[0.075] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/45"
+              key={item.target}
+              type="button"
+              onClick={() => scrollToSection(item.target)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+
         <div className="flex items-center gap-2 sm:gap-6">
           <div className="flex items-center gap-4">
             <a
