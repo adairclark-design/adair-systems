@@ -92,35 +92,39 @@ function CaseStudyCard({
 }) {
   return (
     <motion.article
-      className={`architecture-card magic-card ${index % 2 === 1 ? "architecture-card-reverse" : ""}`}
+      className="architecture-card magic-card"
       initial={{ opacity: 0, y: 54 }}
       whileInView={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.012 }}
+      whileHover={{ scale: 1.006 }}
       viewport={{ once: true, amount: 0.18 }}
       transition={{ duration: 0.78, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="case-image-panel">
+      <figure className="case-image-panel">
         <div className="case-image-frame">
           <Image
-            className="w-full aspect-[2.16/1] object-cover object-left-top rounded-lg shadow-lg"
+            className="case-study-image"
             src={project.image}
             alt={project.alt}
             width={project.width}
             height={project.height}
-            unoptimized
-            sizes="(max-width: 900px) 100vw, 54vw"
+            sizes="(max-width: 760px) calc(100vw - 56px), (max-width: 1180px) calc(100vw - 88px), 1124px"
+            quality={90}
             priority={index === 0}
           />
         </div>
-      </div>
+      </figure>
       <div className="case-copy">
-        <span className="case-eyebrow">{project.eyebrow}</span>
-        <h3 className="break-words">{project.title}</h3>
-        <p>{project.description}</p>
-        <div className="case-tags">
-          {project.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
+        <div className="case-copy-heading">
+          <span className="case-eyebrow">{project.eyebrow}</span>
+          <h3 className="break-words">{project.title}</h3>
+        </div>
+        <div className="case-copy-body">
+          <p>{project.description}</p>
+          <div className="case-tags">
+            {project.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
         </div>
       </div>
     </motion.article>
