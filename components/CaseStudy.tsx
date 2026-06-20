@@ -12,8 +12,8 @@ const caseStudies = [
     tags: ["AI planning", "Client UX", "Performance systems"],
     image: "/tristan-app.png",
     alt: "Tristan's Fitness Platform training plan and nutrition dashboard interface",
-    width: 2930,
-    height: 1354
+    width: 3012,
+    height: 1610
   },
   {
     eyebrow: "Agricultural intelligence",
