@@ -9,8 +9,8 @@ const brandName = "Adair Systems";
 const navigationItems = [
   { label: "Home", target: "top" },
   { label: "Capabilities", target: "capabilities" },
-  { label: "Architecture", target: "featured-architecture" },
-  { label: "Methodology", target: "methodology" }
+  { label: "Methodology", target: "methodology" },
+  { label: "Applications", target: "featured-architecture" }
 ];
 
 function scrollToSection(target: string) {
