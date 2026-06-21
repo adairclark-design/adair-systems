@@ -77,7 +77,7 @@ function BrandLogo() {
       </div>
 
       <span 
-        className="ml-1 text-[1.25rem] font-bold tracking-tight sm:text-[1.35rem]"
+        className="ml-1 whitespace-nowrap text-[1.05rem] font-bold tracking-tight sm:text-[1.35rem]"
         style={{
           background: 'linear-gradient(to right, #66ffcc, #90b2e5, #ba66ff)',
           WebkitBackgroundClip: 'text',
@@ -206,7 +206,7 @@ export function Navbar() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-6">
+        <div className="hidden min-w-0 flex-1 items-center justify-center px-4 sm:flex">
           <div className="flex items-center gap-4">
             <a
               href="https://github.com/adairclark-design"
@@ -227,10 +227,11 @@ export function Navbar() {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
           </div>
-          <a className="nav-cta" href="mailto:hello@adair.systems">
-            Contact
-          </a>
         </div>
+
+        <a className="nav-cta shrink-0" href="mailto:hello@adair.systems">
+          Contact
+        </a>
       </nav>
     </motion.header>
   );
