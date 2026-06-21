@@ -99,12 +99,18 @@ export function Navbar() {
     function updateActiveTarget() {
       const readingLine = window.scrollY + window.innerHeight * 0.32;
       let currentTarget = "top";
+      let nearestSectionOffset = -1;
 
       for (const item of navigationItems.slice(1)) {
         const section = document.getElementById(item.target);
 
-        if (section && section.offsetTop <= readingLine) {
+        if (
+          section &&
+          section.offsetTop <= readingLine &&
+          section.offsetTop > nearestSectionOffset
+        ) {
           currentTarget = item.target;
+          nearestSectionOffset = section.offsetTop;
         }
       }
 
