@@ -177,7 +177,7 @@ export function Navbar() {
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
     >
       <nav className="nav-shell" aria-label="Primary navigation">
-        <div className="flex min-w-0 items-center gap-8">
+        <div className="flex min-w-0 items-center gap-6">
           <BrandLogo />
           <div
             className="hidden h-[3.25rem] w-[clamp(31rem,44vw,52rem)] items-center gap-1 rounded-full border border-white/[0.09] bg-white/[0.04] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.09),0_12px_34px_rgba(0,0,0,0.22)] backdrop-blur-xl lg:flex"
