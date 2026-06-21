@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Network } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const brandName = "Adair Systems";
 
@@ -92,6 +93,34 @@ function BrandLogo() {
 }
 
 export function Navbar() {
+  const [activeTarget, setActiveTarget] = useState("top");
+
+  useEffect(() => {
+    function updateActiveTarget() {
+      const readingLine = window.scrollY + window.innerHeight * 0.32;
+      let currentTarget = "top";
+
+      for (const item of navigationItems.slice(1)) {
+        const section = document.getElementById(item.target);
+
+        if (section && section.offsetTop <= readingLine) {
+          currentTarget = item.target;
+        }
+      }
+
+      setActiveTarget(currentTarget);
+    }
+
+    updateActiveTarget();
+    window.addEventListener("scroll", updateActiveTarget, { passive: true });
+    window.addEventListener("resize", updateActiveTarget);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveTarget);
+      window.removeEventListener("resize", updateActiveTarget);
+    };
+  }, []);
+
   return (
     <motion.header
       className="site-header"
@@ -103,17 +132,27 @@ export function Navbar() {
         <div className="flex min-w-0 items-center gap-8">
           <BrandLogo />
           <div
-            className="hidden h-11 items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.035] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-xl lg:flex"
+            className="hidden h-[3.25rem] w-[clamp(31rem,44vw,52rem)] items-center gap-1 rounded-full border border-white/[0.09] bg-white/[0.04] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.09),0_12px_34px_rgba(0,0,0,0.22)] backdrop-blur-xl lg:flex"
             aria-label="Page sections"
           >
             {navigationItems.map((item) => (
               <button
-                className="h-9 cursor-pointer rounded-full border-0 bg-transparent px-6 text-sm font-semibold leading-none text-slate-400 transition duration-200 hover:bg-white/[0.075] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/45"
+                className={`group relative isolate flex h-11 min-w-0 flex-1 cursor-pointer items-center justify-center rounded-full border-0 bg-transparent px-4 text-[0.95rem] font-bold leading-none tracking-normal transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/50 xl:px-6 xl:text-base ${
+                  activeTarget === item.target ? "text-white" : "text-slate-300 hover:text-white"
+                }`}
                 key={item.target}
                 type="button"
                 onClick={() => scrollToSection(item.target)}
+                aria-current={activeTarget === item.target ? "page" : undefined}
               >
-                {item.label}
+                {activeTarget === item.target && (
+                  <motion.span
+                    className="absolute inset-0 -z-10 rounded-full border border-white/[0.11] bg-[linear-gradient(135deg,rgba(102,255,204,0.11),rgba(144,178,229,0.08)_48%,rgba(186,102,255,0.12))] shadow-[inset_0_1px_0_rgba(255,255,255,0.10),0_8px_24px_rgba(0,0,0,0.18)]"
+                    layoutId="navbar-active-section"
+                    transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                  />
+                )}
+                <span className="relative z-10 whitespace-nowrap">{item.label}</span>
               </button>
             ))}
           </div>
