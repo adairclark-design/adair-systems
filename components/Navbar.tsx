@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Network } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const brandName = "Adair Systems";
 
@@ -94,9 +94,30 @@ function BrandLogo() {
 
 export function Navbar() {
   const [activeTarget, setActiveTarget] = useState("top");
+  const isProgrammaticScroll = useRef(false);
+  const scrollLockTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function handleNavigation(target: string) {
+    isProgrammaticScroll.current = true;
+    setActiveTarget(target);
+    scrollToSection(target);
+
+    if (scrollLockTimeout.current) {
+      clearTimeout(scrollLockTimeout.current);
+    }
+
+    scrollLockTimeout.current = setTimeout(() => {
+      isProgrammaticScroll.current = false;
+      scrollLockTimeout.current = null;
+    }, 1600);
+  }
 
   useEffect(() => {
     function updateActiveTarget() {
+      if (isProgrammaticScroll.current) {
+        return;
+      }
+
       const readingLine = window.scrollY + window.innerHeight * 0.32;
       let currentTarget = "top";
       let nearestSectionOffset = -1;
@@ -117,13 +138,34 @@ export function Navbar() {
       setActiveTarget(currentTarget);
     }
 
+    function finishProgrammaticScroll() {
+      if (!isProgrammaticScroll.current) {
+        return;
+      }
+
+      isProgrammaticScroll.current = false;
+
+      if (scrollLockTimeout.current) {
+        clearTimeout(scrollLockTimeout.current);
+        scrollLockTimeout.current = null;
+      }
+
+      updateActiveTarget();
+    }
+
     updateActiveTarget();
     window.addEventListener("scroll", updateActiveTarget, { passive: true });
+    window.addEventListener("scrollend", finishProgrammaticScroll);
     window.addEventListener("resize", updateActiveTarget);
 
     return () => {
       window.removeEventListener("scroll", updateActiveTarget);
+      window.removeEventListener("scrollend", finishProgrammaticScroll);
       window.removeEventListener("resize", updateActiveTarget);
+
+      if (scrollLockTimeout.current) {
+        clearTimeout(scrollLockTimeout.current);
+      }
     };
   }, []);
 
@@ -148,7 +190,7 @@ export function Navbar() {
                 }`}
                 key={item.target}
                 type="button"
-                onClick={() => scrollToSection(item.target)}
+                onClick={() => handleNavigation(item.target)}
                 aria-current={activeTarget === item.target ? "page" : undefined}
               >
                 {activeTarget === item.target && (
