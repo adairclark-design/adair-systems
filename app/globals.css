@@ -831,9 +831,7 @@ main > * {
     grid-template-columns: 1fr;
   }
 
-  .hero-title {
-    font-size: 6.35rem;
-  }
+
 
   .hero-hologram {
     min-height: 420px;
@@ -881,16 +879,7 @@ main > * {
     gap: 38px;
   }
 
-  .hero-title {
-    max-width: 7.6ch;
-    font-size: 4.35rem;
-  }
 
-  .hero-subhead {
-    margin-top: 22px;
-    max-width: 14ch;
-    font-size: 1.58rem;
-  }
 
   .hero-actions {
     margin-top: 34px;
@@ -1016,13 +1005,7 @@ main > * {
 }
 
 @media (max-width: 430px) {
-  .hero-title {
-    font-size: 3.72rem;
-  }
 
-  .hero-subhead {
-    font-size: 1.42rem;
-  }
 
   .featured-heading h2 {
     font-size: 1.53rem;

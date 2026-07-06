@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BackgroundField } from "@/components/BackgroundField";
 import MurmurationVisual from "@/components/MurmurationVisual";
 
 function WordReveal({
@@ -52,7 +51,6 @@ function WordReveal({
 export function Hero() {
   return (
     <section className="hero-section" id="top">
-      <BackgroundField />
       <div className="hero-grid">
         <motion.div
           className="hero-content"
