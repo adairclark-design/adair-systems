@@ -67,7 +67,10 @@ export function Hero() {
             An agentic engineering practice
           </motion.p>
           <h1 className="hero-title" aria-label="Direction is the engineering multiplier.">
-            <WordReveal text="Direction is the engineering multiplier." delay={0.16} />
+            <WordReveal text="Direction is the" delay={0.16} />{" "}
+            <span className="hero-title__unit">
+              <WordReveal text="engineering multiplier." delay={0.40} />
+            </span>
           </h1>
           <p className="hero-subhead" aria-label="One technical director, orchestrating specialized AI agents into production software. The AI provides speed; Adair Clark provides the judgment.">
             <WordReveal text="One technical director, orchestrating specialized AI agents into production software. The AI provides speed; Adair Clark provides the judgment." delay={0.42} />
