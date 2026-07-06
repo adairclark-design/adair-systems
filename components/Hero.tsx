@@ -2,14 +2,7 @@
 
 import { motion } from "framer-motion";
 import { BackgroundField } from "@/components/BackgroundField";
-
-const buildSignals = [
-  "Multi-Agent Product Orchestration",
-  "Advanced Prompt Architecture",
-  "Full-Stack Systems Direction",
-  "Human-Governed Validation",
-  "AI-Accelerated Deployment"
-];
+import MurmurationVisual from "@/components/MurmurationVisual";
 
 function WordReveal({
   text,
@@ -94,29 +87,11 @@ export function Hero() {
         </motion.div>
 
         <motion.aside
-          className="hero-hologram magic-card"
           initial={{ opacity: 0, y: 34 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.05, delay: 0.46, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="hologram-orbit" />
-          <div className="hologram-orbit hologram-orbit-two" />
-          <div className="hologram-panel">
-            <span className="hologram-label">[ CAPABILITIES ]</span>
-            <strong>One technical director. Multiple specialized agents.</strong>
-          </div>
-          <div className="hologram-stack">
-            {buildSignals.map((signal, index) => (
-              <motion.span
-                key={signal}
-                initial={{ opacity: 0, x: 24 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: 0.74 + index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              >
-                {signal}
-              </motion.span>
-            ))}
-          </div>
+          <MurmurationVisual />
         </motion.aside>
       </div>
     </section>

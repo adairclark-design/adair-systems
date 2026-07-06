@@ -56,9 +56,9 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   background:
-    radial-gradient(ellipse at 18% 0%, rgba(var(--accent-violet-rgb), 0.07), transparent 34rem),
-    radial-gradient(ellipse at 82% 10%, rgba(var(--accent-teal-rgb), 0.07), transparent 32rem),
+    url("/murmuration-bg.svg") no-repeat center top / 1920px auto,
     linear-gradient(180deg, #05050a 0%, #080812 48%, #05050a 100%);
+  background-attachment: fixed, scroll;
   letter-spacing: 0;
 }
 
@@ -98,8 +98,9 @@ main > * {
 }
 
 .mono-tag {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  letter-spacing: 0.08em;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.14em;
 }
 
 .section-crosshair {
@@ -389,10 +390,10 @@ main > * {
   max-width: 900px;
   margin: 0;
   color: #fff;
-  font-size: 5.5rem;
-  line-height: 1;
-  font-weight: 780;
-  letter-spacing: -0.04em;
+  font-weight: 500;
+  font-size: clamp(2.75rem, 5.5vw, 4.75rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
 }
 
 .hero-title .word-reveal {
@@ -400,12 +401,13 @@ main > * {
 }
 
 .hero-subhead {
-  max-width: 720px;
+  max-width: 42ch;
   margin: 30px 0 0;
-  color: rgba(236, 238, 249, 0.82);
-  font-size: 2rem;
-  line-height: 1.12;
-  font-weight: 430;
+  color: var(--muted);
+  font-weight: 400;
+  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  letter-spacing: -0.011em;
+  line-height: 1.55;
 }
 
 .hero-actions {
@@ -448,113 +450,38 @@ main > * {
   transform: translateX(140%);
 }
 
-.hero-hologram {
+.murmuration {
   position: relative;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 34px 28px;
-  min-height: 440px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 8px;
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035)),
-    rgba(8, 8, 18, 0.48);
-  box-shadow: 0 40px 130px rgba(0, 0, 0, 0.42), 0 0 80px rgba(var(--accent-violet-rgb), 0.14);
-  backdrop-filter: blur(30px) saturate(145%);
-  transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
+  gap: 16px;
+  min-height: 420px;
 }
 
-.hero-hologram:hover {
-  transform: scale(1.01);
-  border-color: rgba(var(--accent-teal-rgb), 0.24);
-  box-shadow: 0 44px 136px rgba(0, 0, 0, 0.46), 0 0 86px rgba(var(--accent-teal-rgb), 0.14);
+.murmuration__label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--accent-teal-text);
 }
 
-.hero-hologram::after {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  border-radius: 7px;
-  background:
-    linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.14) 22%, transparent 46%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.07), transparent 52%);
-  opacity: 0.34;
-  pointer-events: none;
+.murmuration__canvas {
+  flex: 1;
+  width: 100%;
+  min-height: 300px;
 }
 
-.hologram-orbit {
-  position: absolute;
-  top: 72px;
-  left: 50%;
-  width: 270px;
-  height: 270px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 50%;
-  background:
-    conic-gradient(from 180deg, transparent, rgba(var(--accent-teal-rgb), 0.28), transparent 36%, rgba(var(--accent-violet-rgb), 0.26), transparent 70%),
-    radial-gradient(circle, rgba(255, 255, 255, 0.07), transparent 62%);
-  transform: translateX(-50%) rotate(-18deg) scaleY(0.34);
-  box-shadow: 0 0 74px rgba(var(--accent-teal-rgb), 0.12);
-}
-
-.hologram-orbit-two {
-  top: 116px;
-  width: 380px;
-  height: 380px;
-  opacity: 0.66;
-  transform: translateX(-50%) rotate(24deg) scaleY(0.34);
-}
-
-.hologram-panel {
-  position: relative;
-  z-index: 2;
-  padding: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.055);
-  backdrop-filter: blur(18px);
-}
-
-.hologram-label {
-  display: block;
-  margin-bottom: 10px;
-  color: rgba(var(--accent-teal-rgb), 0.78);
-  font-size: 0.76rem;
-  font-weight: 720;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  letter-spacing: 0.08em;
-}
-
-.hologram-panel strong {
-  display: block;
-  max-width: 14ch;
-  font-size: 2rem;
-  line-height: 1.02;
-}
-
-.hologram-stack {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  gap: 10px;
-}
-
-.hologram-stack span {
-  min-height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.032)),
-    rgba(4, 4, 10, 0.5);
-  color: rgba(247, 248, 255, 0.82);
-  font-size: 0.9rem;
-  font-weight: 680;
+.murmuration__caption {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
 }
 
 .capabilities-section {
