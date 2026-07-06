@@ -27,7 +27,7 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            // STATUS: ACCEPTING PROJECTS
+            // CURRENTLY BOOKING: Q3 2026
           </motion.span>
           
           <motion.h2 

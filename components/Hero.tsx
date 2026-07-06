@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import MurmurationVisual from "@/components/MurmurationVisual";
+import EngagementReadout from "@/components/EngagementReadout";
 
 function WordReveal({
   text,
@@ -92,7 +92,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.05, delay: 0.46, ease: [0.16, 1, 0.3, 1] }}
         >
-          <MurmurationVisual />
+          <EngagementReadout />
         </motion.aside>
       </div>
     </section>

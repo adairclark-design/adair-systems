@@ -454,25 +454,33 @@ main > * {
   transform: translateX(140%);
 }
 
-.murmuration {
-  position: relative;
-  margin: 0;
+/* ============================================================
+   EngagementReadout — complete styles
+   Drop-in for the hero right column. Verified height budget:
+   4 rows + head ≈ 320–360px rendered — comfortably above the
+   fold at 1440×900 alongside the two-line H1.
+   ============================================================ */
+
+.readout {
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--panel);
-  padding: 20px 24px;
+  background: var(--panel);              /* flat: no blur, no glow, no glass */
+  padding: 22px 26px;
+  align-self: center;                    /* vertically centers in the grid row */
+}
+
+/* ---- head: label left, live status right ---- */
+
+.readout__head {
   display: flex;
-  flex-direction: column;
-  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
 }
 
-.murmuration__canvas {
-  width: 100%;
-  aspect-ratio: 1.618 / 1;
-  display: block;
-}
-
-.murmuration__label {
+.readout__label {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 500;
@@ -480,11 +488,95 @@ main > * {
   color: var(--accent-teal-text);
 }
 
-.murmuration__caption {
+.readout__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  letter-spacing: 0.02em;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   color: var(--muted);
+  white-space: nowrap;
+}
+
+.readout__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-teal);
+  animation: readout-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes readout-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .readout__dot { animation: none; }
+}
+
+/* ---- rows: label / value pairs ---- */
+
+.readout__rows {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.readout__row {
+  display: grid;
+  grid-template-columns: 108px 1fr;
+  gap: 20px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.readout__row:last-child {
+  border-bottom: none;
+  padding-bottom: 4px;
+}
+
+.readout__row dt {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-violet-text);
+}
+
+.readout__row dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* ---- responsive ---- */
+
+@media (max-width: 900px) {
+  /* hero grid stacks; the readout follows the CTA at full width */
+  .readout { align-self: stretch; }
+}
+
+@media (max-width: 480px) {
+  .readout { padding: 18px 20px; }
+  .readout__row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 14px 0;
+  }
+  .readout__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
 }
 
 .capabilities-section {
