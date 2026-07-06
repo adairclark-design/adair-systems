@@ -82,7 +82,7 @@ export function Methodology() {
                 <h3 className="m-0 max-w-none text-3xl font-extrabold leading-[1.04] text-white sm:text-4xl lg:text-[2.55rem] xl:text-5xl">
                   AI provides <span className="text-[#b8eadc] drop-shadow-[0_0_18px_rgba(102,255,204,0.18)]">parallel execution.</span>
                 </h3>
-                <div className="h-px w-full bg-gradient-to-r from-cyan-300/45 via-indigo-300/20 to-transparent" aria-hidden="true" />
+                <div className="h-px w-full bg-gradient-to-r from-[#2DD4C2]/45 via-[#9B84F5]/20 to-transparent" aria-hidden="true" />
                 <h3 className="m-0 max-w-none text-3xl font-extrabold leading-[1.04] text-white sm:text-4xl lg:text-[2.55rem] xl:text-5xl">
                   I provide <span className="text-[#d8c5f1] drop-shadow-[0_0_18px_rgba(186,102,255,0.18)]">technical judgment.</span>
                 </h3>
@@ -92,7 +92,7 @@ export function Methodology() {
               </p>
             </div>
 
-            <div className="mt-10 border-l-2 border-cyan-300/55 pl-5 text-sm leading-6 text-slate-300/75">
+            <div className="mt-10 border-l-2 border-[#2DD4C2]/55 pl-5 text-sm leading-6 text-slate-300/75">
               Faster iteration without outsourcing architecture, security, or accountability to the model.
             </div>
           </div>

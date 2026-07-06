@@ -28,42 +28,42 @@ function scrollToSection(target: string) {
 function BrandLogo() {
   return (
     <a
-      className="group flex items-center gap-3 outline-none transition duration-300 focus-visible:ring-2 focus-visible:ring-cyan-300/60"
+      className="group flex items-center gap-3 outline-none transition duration-300 focus-visible:ring-2 focus-visible:ring-[#1FB6A6]/60"
       href="#top"
       aria-label={`${brandName} home`}
     >
-      <div className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-[16px] border border-white/10 bg-[#09090E] shadow-[0_12px_32px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.15)] transition duration-500 group-hover:-translate-y-0.5 group-hover:border-white/20 group-hover:shadow-[0_16px_40px_rgba(0,0,0,0.7),0_0_48px_rgba(186,102,255,0.25),inset_0_1px_0_rgba(255,255,255,0.25)]">
+      <div className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-[16px] border border-white/10 bg-[#09090E] shadow-[0_12px_32px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.15)] transition duration-500 group-hover:-translate-y-0.5 group-hover:border-white/20 group-hover:shadow-[0_16px_40px_rgba(0,0,0,0.7),0_0_48px_rgba(124,92,240,0.25),inset_0_1px_0_rgba(255,255,255,0.25)]">
         {/* Subtle Aurora Inner Background */}
-        <span className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(102,255,204,0.25)_0%,transparent_50%),radial-gradient(circle_at_80%_80%,rgba(186,102,255,0.25)_0%,transparent_50%)]" />
+        <span className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(31,182,166,0.25)_0%,transparent_50%),radial-gradient(circle_at_80%_80%,rgba(124,92,240,0.25)_0%,transparent_50%)]" />
         <svg 
           viewBox="0 0 24 24" 
           fill="none" 
           strokeWidth={2} 
           strokeLinecap="round" 
           strokeLinejoin="round" 
-          className="relative z-10 h-7 w-7 drop-shadow-[0_0_12px_rgba(102,255,204,0.6)] transition duration-500 group-hover:scale-110" 
+          className="relative z-10 h-7 w-7 drop-shadow-[0_0_12px_rgba(31,182,166,0.6)] transition duration-500 group-hover:scale-110" 
           aria-hidden="true"
         >
           <defs>
             {/* Gradient exclusively for the connecting lines */}
             <linearGradient id="connecting-lines" x1="5" y1="0" x2="19" y2="0" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#66ffcc" />
-              <stop offset="50%" stopColor="#90b2e5" />
-              <stop offset="100%" stopColor="#ba66ff" />
+              <stop offset="0%" stopColor="#1FB6A6" />
+              <stop offset="50%" stopColor="#9B84F5" />
+              <stop offset="100%" stopColor="#7C5CF0" />
             </linearGradient>
 
             {/* Dedicated Diagonal Gradient for the Top Box */}
             <linearGradient id="top-box-gradient" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
-              <stop offset="0%" stopColor="#66ffcc" /> {/* Top Left: Mint */}
-              <stop offset="100%" stopColor="#ba66ff" /> {/* Bottom Right: Purple */}
+              <stop offset="0%" stopColor="#1FB6A6" /> {/* Top Left: Meridian Teal */}
+              <stop offset="100%" stopColor="#7C5CF0" /> {/* Bottom Right: Ion Violet */}
             </linearGradient>
           </defs>
           
-          {/* Bottom Left Box: Pure Mint */}
-          <rect x="2" y="16" width="6" height="6" rx="1" stroke="#66ffcc" />
+          {/* Bottom Left Box: Meridian Teal */}
+          <rect x="2" y="16" width="6" height="6" rx="1" stroke="#1FB6A6" />
           
-          {/* Bottom Right Box: Pure Purple */}
-          <rect x="16" y="16" width="6" height="6" rx="1" stroke="#ba66ff" />
+          {/* Bottom Right Box: Ion Violet */}
+          <rect x="16" y="16" width="6" height="6" rx="1" stroke="#7C5CF0" />
           
           {/* Top Box: Diagonal Mint-to-Purple Gradient */}
           <rect x="9" y="2" width="6" height="6" rx="1" stroke="url(#top-box-gradient)" />
@@ -71,15 +71,15 @@ function BrandLogo() {
           {/* Horizontal Connecting Line: Mint to Purple Gradient */}
           <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" stroke="url(#connecting-lines)" />
           
-          {/* Vertical Connecting Line: Solid Violet Blend */}
-          <path d="M12 12V8" stroke="#90b2e5" />
+          {/* Vertical Connecting Line: Violet tint */}
+          <path d="M12 12V8" stroke="#9B84F5" />
         </svg>
       </div>
 
       <span 
         className="ml-1 whitespace-nowrap text-[1.05rem] font-bold tracking-tight sm:text-[1.35rem]"
         style={{
-          background: 'linear-gradient(to right, #66ffcc, #90b2e5, #ba66ff)',
+          background: 'linear-gradient(to right, #1FB6A6, #9B84F5, #7C5CF0)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
@@ -185,7 +185,7 @@ export function Navbar() {
           >
             {navigationItems.map((item) => (
               <button
-                className={`group relative isolate flex h-11 min-w-0 flex-1 cursor-pointer items-center justify-center rounded-full border-0 bg-transparent px-4 text-[0.95rem] font-bold leading-none tracking-normal transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/50 xl:px-6 xl:text-base ${
+                className={`group relative isolate flex h-11 min-w-0 flex-1 cursor-pointer items-center justify-center rounded-full border-0 bg-transparent px-4 text-[0.95rem] font-bold leading-none tracking-normal transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2DD4C2]/50 xl:px-6 xl:text-base ${
                   activeTarget === item.target ? "text-white" : "text-slate-300 hover:text-white"
                 }`}
                 key={item.target}
@@ -195,7 +195,7 @@ export function Navbar() {
               >
                 {activeTarget === item.target && (
                   <motion.span
-                    className="absolute inset-0 -z-10 rounded-full border border-white/[0.11] bg-[linear-gradient(135deg,rgba(102,255,204,0.11),rgba(144,178,229,0.08)_48%,rgba(186,102,255,0.12))] shadow-[inset_0_1px_0_rgba(255,255,255,0.10),0_8px_24px_rgba(0,0,0,0.18)]"
+                    className="absolute inset-0 -z-10 rounded-full border border-white/[0.11] bg-[linear-gradient(135deg,rgba(31,182,166,0.11),rgba(124,92,240,0.08)_48%,rgba(124,92,240,0.12))] shadow-[inset_0_1px_0_rgba(255,255,255,0.10),0_8px_24px_rgba(0,0,0,0.18)]"
                     layoutId="navbar-active-section"
                     transition={{ type: "spring", stiffness: 420, damping: 34 }}
                   />
@@ -221,7 +221,7 @@ export function Navbar() {
               href="https://www.linkedin.com/in/adair-clark-0380b9239"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-400 transition-colors hover:text-[#BA66FF]"
+              className="text-slate-400 transition-colors hover:text-[#7C5CF0]"
               aria-label="LinkedIn"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
