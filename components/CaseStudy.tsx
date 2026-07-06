@@ -7,21 +7,23 @@ import { Plus } from "lucide-react";
 
 const caseStudies = [
   {
-    eyebrow: "Agentic product architecture",
-    title: "Tristan's Fitness Platform",
+    eyebrow: "Multi-agent intelligence layer",
+    title: "Polyvision Integration",
     description:
-      "Directed a multi-surface product build spanning client onboarding, training workflows, workout tracking, and AI-assisted nutrition planning. Specialized agents advanced frontend, backend, and product logic in parallel while I governed the architecture and integration layer.",
-    tags: ["Agentic full stack", "AI planning", "Client platform"],
-    image: "/tristan-app.png",
-    alt: "Tristan's Fitness Platform training plan and nutrition dashboard interface",
-    width: 3012,
-    height: 1610
+      "Directed a real-time intelligence product across market data ingestion, API architecture, alerting, and LLM-assisted interpretation. Agentic execution coordinated the interface and backend workstreams while I controlled system boundaries, integration quality, and release readiness.",
+    outcome: "Raw market feeds became interpreted, actionable alerts — removing the manual monitoring layer between data and decision.",
+    tags: ["LLM orchestration", "API architecture", "Realtime intelligence"],
+    image: "/polyvision.png",
+    alt: "PolyVision AI edge prediction market intelligence landing page",
+    width: 2936,
+    height: 1600
   },
   {
     eyebrow: "Orchestrated decision system",
     title: "AcreLogic",
     description:
       "Orchestrated a data-rich agricultural platform combining crop intelligence, planning rules, search, and high-density interaction design. Agent teams handled data modeling, interface systems, and decision logic concurrently, compressing a complex product into one cohesive experience.",
+    outcome: "Planning decisions that required cross-referencing multiple data sources now resolve in one query.",
     tags: ["Agent orchestration", "Decision systems", "Data-rich UX"],
     image: "/acrelogic.png",
     alt: "AcreLogic crop selection interface for intelligent gardening and agriculture planning",
@@ -29,26 +31,28 @@ const caseStudies = [
     height: 1580
   },
   {
+    eyebrow: "Agentic product architecture",
+    title: "TDT Training",
+    description:
+      "Directed a multi-surface product build spanning client onboarding, training workflows, workout tracking, and AI-assisted nutrition planning. Specialized agents advanced frontend, backend, and product logic in parallel while I governed the architecture and integration layer.",
+    outcome: "Onboarding, training, and nutrition planning now run in one platform, replacing the spreadsheets and manual check-ins the business ran on.",
+    tags: ["Agentic full stack", "AI planning", "Client platform"],
+    image: "/tristan-app.png",
+    alt: "TDT Training training plan and nutrition dashboard interface",
+    width: 3012,
+    height: 1610
+  },
+  {
     eyebrow: "AI-accelerated brand platform",
     title: "RappConsulting",
     description:
       "Directed an AI-accelerated redesign across brand language, content architecture, responsive components, and conversion flows. The orchestration model moved strategy, design, and implementation forward together while preserving a deliberate executive-grade finish.",
+    outcome: "Strategy, design, and implementation moved as one workstream, collapsing the usual agency hand-off cycle entirely.",
     tags: ["AI-directed design", "B2B systems", "Rapid deployment"],
     image: "/rapp-consulting.png",
     alt: "Rapp Consulting premium nonprofit consulting website homepage redesign",
     width: 2934,
     height: 1588
-  },
-  {
-    eyebrow: "Multi-agent intelligence layer",
-    title: "Polyvision Integration",
-    description:
-      "Directed a real-time intelligence product across market data ingestion, API architecture, alerting, and LLM-assisted interpretation. Agentic execution coordinated the interface and backend workstreams while I controlled system boundaries, integration quality, and release readiness.",
-    tags: ["LLM orchestration", "API architecture", "Realtime intelligence"],
-    image: "/polyvision.png",
-    alt: "PolyVision AI edge prediction market intelligence landing page",
-    width: 2936,
-    height: 1600
   }
 ];
 
@@ -91,7 +95,7 @@ function CaseStudyRow({
   isExpanded,
   onToggle
 }: {
-  project: (typeof caseStudies)[number];
+  project: (typeof caseStudies)[number] & { outcome?: string };
   index: number;
   isExpanded: boolean;
   onToggle: () => void;
@@ -179,7 +183,12 @@ function CaseStudyRow({
 
               <div className="mx-auto flex w-full max-w-3xl min-w-0 flex-col px-2 pb-2">
                 <p className="m-0 max-w-3xl text-sm leading-6 text-slate-300/75 sm:text-base sm:leading-7">{project.description}</p>
-                <div className="mt-6 flex flex-wrap gap-2">
+                {project.outcome && (
+                  <p className="m-0 mt-5 max-w-3xl border-l-[2px] border-[#1FB6A6] pl-4 text-sm leading-6 text-[#7e849a] sm:text-[0.92rem] sm:leading-7">
+                    {project.outcome}
+                  </p>
+                )}
+                <div className="mt-7 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
                       className="inline-flex min-h-8 items-center rounded-full border border-white/10 bg-white/[0.045] px-3 text-xs font-semibold text-slate-300/80"
@@ -222,7 +231,7 @@ export function CaseStudy() {
           viewport={{ once: true, amount: 0.72 }}
           transition={{ duration: 0.76, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
         >
-          <ScrollWords text="Premium applications engineered to scale your business." />
+          <ScrollWords text="Systems in production." />
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 24 }}

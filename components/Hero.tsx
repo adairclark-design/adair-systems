@@ -73,13 +73,13 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
-            Agentic engineering studio for ambitious companies
+            An agentic engineering practice
           </motion.p>
-          <h1 className="hero-title" aria-label="Intelligent Architecture.">
-            <WordReveal text="Intelligent Architecture." delay={0.16} />
+          <h1 className="hero-title" aria-label="Direction is the engineering multiplier.">
+            <WordReveal text="Direction is the engineering multiplier." delay={0.16} />
           </h1>
-          <p className="hero-subhead" aria-label="Agentic Engineering. World-Class Design. Enterprise software directed by Adair Clark and executed through specialized AI systems.">
-            <WordReveal text="Agentic Engineering. World-Class Design. Enterprise software directed by Adair Clark and executed through specialized AI systems." delay={0.42} />
+          <p className="hero-subhead" aria-label="One technical director, orchestrating specialized AI agents into production software. The AI provides speed; Adair Clark provides the judgment.">
+            <WordReveal text="One technical director, orchestrating specialized AI agents into production software. The AI provides speed; Adair Clark provides the judgment." delay={0.42} />
           </p>
           <motion.div
             className="hero-actions"
@@ -88,7 +88,7 @@ export function Hero() {
             transition={{ duration: 0.75, delay: 0.72, ease: [0.16, 1, 0.3, 1] }}
           >
             <a className="primary-cta" href="mailto:hello@adair.systems?subject=Agentic%20Build">
-              Start an Agentic Build
+              Start a project
             </a>
           </motion.div>
         </motion.div>
