@@ -1556,3 +1556,168 @@ main > * {
   .opmodel { height: auto; }
   .hero-field-layer { will-change: auto; }
 }
+
+/* ============================================================
+   hero-fixes.css — three fixes in one cascade layer
+   Load LAST (after interactions.css, scroll-moments.css, and the
+   readout styles) — several rules below intentionally override
+   earlier declarations.
+
+   No component changes. The boot sequence, scramble, focus states,
+   and reduced-motion behavior are untouched.
+   ============================================================ */
+
+/* ============================================================
+   ISSUE 1 — navbar clearance
+   ============================================================ */
+
+:root {
+  /* VERIFY against the real computed height:
+     document.querySelector('.nav').getBoundingClientRect().height
+     — include the nav's own top offset if it floats with a margin.
+     80px is the measured baseline from your description; adjust the
+     token, everything downstream follows. */
+  --navbar-h: 82px; /* measured: top:18px + nav-shell height:64px = 82px */
+}
+
+.hero--depth {
+  padding-top: var(--navbar-h);
+}
+
+/* anchor targets scroll to below the fixed nav — applied to every
+   section anchor, not just #home, since Capabilities/Methodology/
+   Applications links have the same problem waiting */
+section[id],
+[id="home"],
+[id="capabilities"],
+[id="methodology"],
+[id="applications"] {
+  scroll-margin-top: calc(var(--navbar-h) + 16px);
+}
+
+/* ============================================================
+   ISSUE 2 — hero container + responsive collapse
+   ============================================================ */
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(40px, 5vw, 72px);
+  width: 100%;
+  max-width: var(--container);   /* same container pattern as every section */
+  margin: 0 auto;
+  padding: 0 20px;               /* the missing horizontal padding */
+}
+
+@media (max-width: 1023px) {
+  .hero__grid {
+    grid-template-columns: 1fr;  /* single column */
+    gap: 44px;
+  }
+
+  /* the readout stays visible below the CTA at full width.
+     NOTE: if Hero.tsx / HeroDepth's panel wrapper carries a legacy
+     Tailwind visibility class (`hidden lg:block` or similar), DELETE
+     it — that class is why the panel vanishes at this breakpoint.
+     CSS cannot override `display: none` set by a utility class with
+     !important semantics; the markup must drop it. */
+  .hero__panel {
+    display: block;
+    max-width: 560px;            /* don't let the panel run edge-to-edge wide */
+  }
+}
+
+@media (max-width: 640px) {
+  .hero--depth { padding-top: calc(var(--navbar-h) + 8px); }
+  .hero__grid { gap: 36px; }
+}
+
+/* ============================================================
+   ISSUE 3 — readout elevation
+   Deepening, not decorating: depth via a barely-there vertical
+   gradient + top-edge catchlight; structure via a column rule
+   between labels and values; life via row hover; prominence via
+   a proper status chip. Boot sequence unaffected — it animates
+   ::after hairlines and dd opacity, neither of which these rules
+   touch in conflicting ways.
+   ============================================================ */
+
+/* depth: vertical falloff + 1px top catchlight, like machined metal
+   under a console light. Overrides the flat var(--panel) fill. */
+.readout {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.095) 0%,
+    rgba(255, 255, 255, 0.055) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+/* structure: a hairline column rule between label and value.
+   It lives on the dd, so during boot it fades in WITH the value
+   (dd opacity animates the border too) — the column assembles
+   as part of the sequence, free of charge. */
+.readout__row dd {
+  border-left: 1px solid var(--line);
+  padding-left: 20px;
+}
+.readout__row {
+  grid-template-columns: 96px 1fr;   /* rebalanced for the rule's padding */
+  gap: 16px;
+}
+
+/* life: rows respond to hover — a breath, not a highlight bar */
+.readout__row {
+  transition: background-color var(--dur-2) var(--ease-out);
+  margin: 0 -12px;                    /* hover field bleeds past the text */
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 6px;
+}
+.readout__row:hover {
+  background-color: rgba(255, 255, 255, 0.035);
+}
+.readout__row dt {
+  transition: color var(--dur-2) var(--ease-out);
+}
+.readout__row:hover dt {
+  color: var(--accent-teal-text);     /* label answers the pointer */
+}
+
+/* prominence: the status becomes a chip — bordered, tinted, the one
+   element on the panel allowed a colored surface */
+.readout__status {
+  padding: 6px 12px;
+  border: 1px solid rgba(31, 182, 166, 0.35);
+  border-radius: 999px;
+  background: rgba(31, 182, 166, 0.08);
+  color: var(--accent-teal-text);
+}
+
+/* the boot delay for the status carries over from interactions.css;
+   only its resting appearance changed */
+
+@media (prefers-reduced-motion: reduce) {
+  .readout__row,
+  .readout__row dt {
+    transition: none;
+  }
+}
+
+@media (max-width: 480px) {
+  /* single-column rows (from the earlier responsive rules): the
+     column rule makes no sense stacked — convert it to an indent rule */
+  .readout__row dd {
+    border-left: 2px solid var(--line);
+    padding-left: 14px;
+  }
+  .readout__row {
+    grid-template-columns: 1fr;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
