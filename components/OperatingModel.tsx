@@ -57,9 +57,13 @@ export default function OperatingModel() {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
 
+  /* window: section entering lower viewport (top at 65% vh) → pin
+     release (section bottom meets viewport bottom). With the 140vh
+     runway that's ~105vh of scroll; words complete at 0.79, leaving
+     the last ~21vh as a held beat of resolved text before release. */
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end end"],
+    offset: ["start 0.65", "end end"],
   });
 
   if (reduced) {
@@ -80,9 +84,10 @@ export default function OperatingModel() {
     );
   }
 
-  /* word start offsets: line 1 across 0.08–0.38, line 2 across 0.46–0.76 */
-  const starts1 = [0.08, 0.18, 0.28, 0.38];
-  const starts2 = [0.46, 0.56, 0.66, 0.76];
+  /* line 1 resolves during the approach (0.05–0.42), line 2 while
+     pinned and centered (0.42–0.79) — each word's window is +0.1 */
+  const starts1 = [0.05, 0.14, 0.23, 0.32];
+  const starts2 = [0.42, 0.51, 0.6, 0.69];
 
   return (
     <div ref={ref} className="opmodel">

@@ -131,9 +131,12 @@ export default function OrchestrationDiagram() {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
 
+  /* progress 0: diagram top enters at 80% of the viewport;
+     progress 1: diagram center meets viewport center — the draw
+     completes, by definition, while the schematic is centered. */
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.85", "end 0.4"],
+    offset: ["start 0.8", "center center"],
   });
 
   return (

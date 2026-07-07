@@ -1476,7 +1476,7 @@ main > * {
 
 .orchestration {
   max-width: 760px;
-  margin: 48px auto 0;
+  margin: 0 auto;            /* the opmodel's held beat is the spacing */
 }
 
 .orchestration__svg {
@@ -1511,7 +1511,7 @@ main > * {
 /* ---- 3. OPERATING MODEL — pinned statement ---- */
 
 .opmodel {
-  height: 170vh;             /* scroll runway for the resolve */
+  height: 140vh;             /* runway: ~105vh choreography + held beat */
 }
 
 .opmodel__pin {

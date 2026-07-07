@@ -75,8 +75,9 @@ export function Methodology() {
       {/* 1. Operating Model — thesis, resolved by scrolling (claim) */}
       <OperatingModel />
 
-      {/* 2. Orchestration Diagram — the mechanism, drawn by scrolling (picture) */}
-      <div className="mx-auto w-[var(--container)] pb-12">
+      {/* 2. Orchestration Diagram — the mechanism, drawn by scrolling (picture).
+          Gap is controlled here: ≤ 64px between opmodel release and diagram. */}
+      <div className="mx-auto w-[var(--container)] pb-4">
         <OrchestrationDiagram />
       </div>
 
