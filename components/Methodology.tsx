@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { FileCode2, Rocket, ShieldCheck, Workflow } from "lucide-react";
+import OperatingModel from "@/components/OperatingModel";
+import OrchestrationDiagram from "@/components/OrchestrationDiagram";
 
 const stages = [
   {
@@ -38,12 +40,13 @@ const operatingPrinciples = [
 
 export function Methodology() {
   return (
-    <section className="relative border-y border-white/[0.07] py-24 sm:py-28" id="methodology" data-reveal>
+    <section className="relative border-y border-white/[0.07]" id="methodology" data-reveal>
       <span className="section-crosshair section-crosshair-top" aria-hidden="true">
         +
       </span>
 
-      <div className="mx-auto w-[var(--container)]">
+      {/* Intro */}
+      <div className="mx-auto w-[var(--container)] py-24 sm:py-28">
         <div className="grid items-start gap-8 lg:grid-cols-[1.18fr_0.82fr] lg:gap-16">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
@@ -67,7 +70,18 @@ export function Methodology() {
             I translate business intent into executable system specifications, direct specialized AI agents across the stack, and integrate their work into one production-grade platform.
           </motion.p>
         </div>
+      </div>
 
+      {/* 1. Operating Model — thesis, resolved by scrolling (claim) */}
+      <OperatingModel />
+
+      {/* 2. Orchestration Diagram — the mechanism, drawn by scrolling (picture) */}
+      <div className="mx-auto w-[var(--container)] pb-12">
+        <OrchestrationDiagram />
+      </div>
+
+      {/* 3. Four process stages — the detail (proof) */}
+      <div className="mx-auto w-[var(--container)] pb-24 sm:pb-28">
         <motion.div
           className="mt-14 grid overflow-hidden rounded-[8px] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.075),rgba(255,255,255,0.025)),rgba(7,7,15,0.72)] shadow-[0_36px_120px_rgba(0,0,0,0.38),0_0_72px_rgba(100,92,255,0.08)] backdrop-blur-2xl lg:grid-cols-[1.05fr_0.95fr]"
           initial={{ opacity: 0, y: 42 }}
@@ -75,28 +89,6 @@ export function Methodology() {
           viewport={{ once: true, amount: 0.05 }}
           transition={{ duration: 0.82, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="flex flex-col justify-between border-b border-white/10 p-8 sm:p-10 lg:border-b-0 lg:border-r lg:p-12">
-            <div>
-              <span className="mono-tag text-xs text-slate-400">[ OPERATING MODEL ]</span>
-              <div className="mt-8 space-y-5">
-                <h3 className="m-0 max-w-none text-3xl font-extrabold leading-[1.04] text-white sm:text-4xl lg:text-[2.55rem] xl:text-5xl">
-                  AI provides <span className="text-[#b8eadc] drop-shadow-[0_0_18px_rgba(102,255,204,0.18)]">parallel execution.</span>
-                </h3>
-                <div className="h-px w-full bg-gradient-to-r from-[#2DD4C2]/45 via-[#9B84F5]/20 to-transparent" aria-hidden="true" />
-                <h3 className="m-0 max-w-none text-3xl font-extrabold leading-[1.04] text-white sm:text-4xl lg:text-[2.55rem] xl:text-5xl">
-                  I provide <span className="text-[#d8c5f1] drop-shadow-[0_0_18px_rgba(186,102,255,0.18)]">technical judgment.</span>
-                </h3>
-              </div>
-              <p className="mt-6 max-w-xl text-base leading-7 text-slate-300/70">
-                The advantage is not generated code. It is disciplined orchestration: the right agents, the right context, explicit system constraints, and senior review at every integration point.
-              </p>
-            </div>
-
-            <div className="mt-10 border-l-2 border-[#2DD4C2]/55 pl-5 text-sm leading-6 text-slate-300/75">
-              Faster iteration without outsourcing architecture, security, or accountability to the model.
-            </div>
-          </div>
-
           <div className="divide-y divide-white/10">
             {stages.map((stage, index) => {
               const Icon = stage.icon;
@@ -123,6 +115,18 @@ export function Methodology() {
                 </motion.article>
               );
             })}
+          </div>
+
+          <div className="flex flex-col justify-between border-t border-white/10 p-8 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
+            <div>
+              <span className="mono-tag text-xs text-slate-400">[ ADVANTAGE ]</span>
+              <p className="mt-6 max-w-xl text-base leading-7 text-slate-300/70">
+                The advantage is not generated code. It is disciplined orchestration: the right agents, the right context, explicit system constraints, and senior review at every integration point.
+              </p>
+            </div>
+            <div className="mt-10 border-l-2 border-[#2DD4C2]/55 pl-5 text-sm leading-6 text-slate-300/75">
+              Faster iteration without outsourcing architecture, security, or accountability to the model.
+            </div>
           </div>
         </motion.div>
 

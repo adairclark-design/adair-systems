@@ -56,9 +56,8 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   background:
-    url("/murmuration-bg.svg") no-repeat center top / 1920px auto,
     linear-gradient(180deg, #05050a 0%, #080812 48%, #05050a 100%);
-  background-attachment: fixed, scroll;
+  background-attachment: scroll;
   letter-spacing: 0;
 }
 
@@ -1437,4 +1436,123 @@ main > * {
     transition: none !important;
   }
   .reveal-ready [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   scroll-moments.css — Phase 6 scroll-driven layer
+   Append after interactions.css (consumes the motion tokens).
+   ============================================================ */
+
+/* ---- 1. HERO DEPTH ---- */
+
+.hero--depth {
+  position: relative;
+  overflow: hidden;          /* the field layer scales; clip it */
+}
+
+/* the murmuration SVG, promoted from body background to an owned layer.
+   REMOVE the url(/murmuration-bg.svg) layer from the body background —
+   this element replaces it. */
+.hero-field-layer {
+  position: absolute;
+  inset: -60px 0;            /* bleed so the parallax travel never reveals edges */
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero-field {
+  width: 100%;
+  height: 100%;
+  background: url("/murmuration-bg.svg") no-repeat center top / 1920px auto;
+}
+
+.hero--depth .hero__grid {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- 2. ORCHESTRATION DIAGRAM ---- */
+
+.orchestration {
+  max-width: 760px;
+  margin: 48px auto 0;
+}
+
+.orchestration__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.orchestration__node {
+  fill: var(--bg-strong);
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 1;
+}
+
+.orchestration__node--ship {
+  stroke: var(--accent-teal);
+}
+
+.orchestration__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  fill: var(--subtle);
+}
+
+@media (max-width: 640px) {
+  /* the schematic stays legible smaller, but labels need a floor */
+  .orchestration__label { font-size: 13px; }
+}
+
+/* ---- 3. OPERATING MODEL — pinned statement ---- */
+
+.opmodel {
+  height: 170vh;             /* scroll runway for the resolve */
+}
+
+.opmodel__pin {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.opmodel--static { height: auto; }
+.opmodel--static .opmodel__pin { min-height: 0; padding: 96px 20px; position: static; }
+
+.opmodel__kicker {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--accent-teal-text);
+  margin-bottom: 14px;
+}
+
+.opmodel__statement {
+  margin: 0;
+  font-size: clamp(2rem, 4.6vw, 3.5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: var(--text);
+  max-width: 18ch;
+}
+
+.opmodel__word--teal   { color: var(--accent-teal-text); }
+.opmodel__word--violet { color: var(--accent-violet-text); }
+
+@media (prefers-reduced-motion: reduce) {
+  .opmodel { height: auto; }
+  .hero-field-layer { will-change: auto; }
 }
