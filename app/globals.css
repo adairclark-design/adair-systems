@@ -531,7 +531,6 @@ main > * {
   gap: 20px;
   align-items: baseline;
   padding: 18px 0;
-  border-bottom: 1px solid var(--line);
 }
 
 .readout__row:last-child {
@@ -1124,4 +1123,318 @@ main > * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+}
+
+/* ============================================================
+   interactions.css — Adair Systems motion & interaction layer
+   One motion system: 3 durations, 2 curves, defined once.
+   Append to globals.css (or import after it).
+   ============================================================ */
+
+:root {
+  /* ---- motion tokens: every transition on the site uses these ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);     /* entrances, hovers */
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);  /* expansions        */
+  --dur-1: 90ms;    /* press feedback — must be the fastest thing on the page */
+  --dur-2: 200ms;   /* hover states */
+  --dur-3: 480ms;   /* entrances, expansions */
+}
+
+/* ============================================================
+   1. BUTTONS — machined three-state model
+   Apply .btn to the hero CTA and the nav Contact button.
+   Press (90ms) is deliberately faster than release (200ms):
+   the asymmetry is what makes a control feel mechanical.
+   ============================================================ */
+
+.btn {
+  position: relative;
+  cursor: pointer;
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out),
+    filter var(--dur-2) var(--ease-out);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+    0 6px 18px rgba(0, 0, 0, 0.35);
+  filter: brightness(1.05);
+}
+
+.btn:active {
+  transform: translateY(0);
+  transition-duration: var(--dur-1);
+  filter: brightness(0.96);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent-teal);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   2. ENGAGEMENT READOUT — boot sequence
+   Component adds .readout--armed on mount, .readout--boot on
+   first intersection. Rows carry style={{ "--boot-i": i }}.
+   Hairlines draw left→right; values fade up 4px; status lights last.
+   ============================================================ */
+
+/* rows use a drawn ::after hairline instead of border-bottom
+   so the rule can animate scaleX */
+.readout__row {
+  position: relative;
+  border-bottom: none;
+}
+.readout__row::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--line);
+  transform-origin: left center;
+}
+.readout__row:last-child::after { display: none; }
+
+/* armed = pre-boot hidden state (only ever applied by JS,
+   so no-JS visitors always see the final panel) */
+.readout--armed .readout__row::after { transform: scaleX(0); }
+.readout--armed .readout__row dd     { opacity: 0; transform: translateY(4px); }
+.readout--armed .readout__status     { opacity: 0; }
+
+/* boot = sequenced resolve */
+.readout--boot .readout__row::after {
+  transform: scaleX(1);
+  transition: transform 360ms var(--ease-out);
+  transition-delay: calc(var(--boot-i, 0) * 140ms + 200ms);
+}
+.readout--boot .readout__row dd {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 320ms var(--ease-out),
+    transform 320ms var(--ease-out);
+  transition-delay: calc(var(--boot-i, 0) * 140ms + 340ms);
+}
+.readout--boot .readout__status {
+  opacity: 1;
+  transition: opacity 300ms var(--ease-out);
+  transition-delay: 1050ms;   /* the status comes online last */
+}
+
+/* ============================================================
+   3. CASE STUDY ROWS — expansion + hover
+   grid-template-rows 0fr→1fr: height-auto animation, no JS
+   measurement, no jank. Toggle rotates + to ×.
+   ============================================================ */
+
+.case {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  transition: border-color var(--dur-2) var(--ease-out);
+}
+.case + .case { margin-top: 14px; }
+
+.case:hover,
+.case--open { border-color: rgba(255, 255, 255, 0.24); }
+
+.case__head {
+  display: grid;
+  grid-template-columns: 56px 1fr 44px;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding: 26px 28px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+.case__head:focus-visible {
+  outline: 2px solid var(--accent-teal);
+  outline-offset: -2px;
+  border-radius: 12px;
+}
+
+.case__index {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--subtle);
+  transition: color var(--dur-2) var(--ease-out);
+}
+.case:hover .case__index,
+.case--open .case__index { color: var(--accent-teal-text); }
+
+.case__meta { display: flex; flex-direction: column; gap: 6px; }
+
+.case__kicker {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--subtle);
+}
+
+.case__title {
+  font-size: clamp(1.375rem, 2.2vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+
+/* toggle: two 1px lines; vertical line rotates away when open (+ → ×
+   reads as + rotating 45° via the whole glyph) */
+.case__toggle {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  justify-self: end;
+  transition:
+    transform var(--dur-3) var(--ease-inout),
+    border-color var(--dur-2) var(--ease-out);
+}
+.case__toggle::before,
+.case__toggle::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 12px;
+  height: 1px;
+  background: var(--muted);
+  transform: translate(-50%, -50%);
+}
+.case__toggle::after { transform: translate(-50%, -50%) rotate(90deg); }
+.case--open .case__toggle { transform: rotate(45deg); border-color: rgba(255,255,255,0.3); }
+.case:hover .case__toggle { border-color: rgba(255,255,255,0.3); }
+
+/* expansion */
+.case__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-3) var(--ease-inout);
+}
+.case--open .case__panel { grid-template-rows: 1fr; }
+
+.case__inner {
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 28px;
+  opacity: 0;
+  transition: opacity var(--dur-2) var(--ease-out);
+}
+.case--open .case__inner {
+  opacity: 1;
+  padding-bottom: 28px;
+  transition:
+    opacity var(--dur-3) var(--ease-out) 120ms; /* content resolves after the panel */
+}
+
+.case__body {
+  margin: 0 0 18px;
+  max-width: 68ch;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* the outcome line — the evidence treatment promised in Phase 2 */
+.case__outcome {
+  margin: 0 0 20px;
+  padding-left: 16px;
+  border-left: 2px solid var(--accent-teal);
+  max-width: 62ch;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.case__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.case__tags li {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--subtle);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 5px 10px;
+}
+
+@media (max-width: 640px) {
+  .case__head { grid-template-columns: 40px 1fr 36px; padding: 20px; gap: 12px; }
+  .case__inner { padding: 0 20px; }
+  .case--open .case__inner { padding-bottom: 20px; }
+}
+
+/* ============================================================
+   4. NAV CLOCK — live telemetry in the chrome
+   tabular-nums: digits are fixed-width, so the clock never
+   jitters as seconds tick. This detail is the point.
+   ============================================================ */
+
+.navclock {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  min-width: 128px;              /* reserves layout before hydration */
+}
+.navclock__label { color: var(--subtle); }
+.navclock__time  { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* ============================================================
+   5. SCROLL REVEAL — one system for all section entrances
+   The hook adds .reveal-ready to <html>; elements are only
+   hidden when JS is confirmed running (no-JS sees everything).
+   Stagger via inline --rv on the element.
+   ============================================================ */
+
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.reveal-ready [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--dur-3) var(--ease-out),
+    transform var(--dur-3) var(--ease-out);
+  transition-delay: var(--rv, 0ms);
+}
+
+/* ============================================================
+   REDUCED MOTION — the whole layer stands down at once
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn:hover, .btn:active { transform: none; }
+  .readout--armed .readout__row::after,
+  .readout--armed .readout__row dd,
+  .readout--armed .readout__status {
+    transform: none; opacity: 1;
+  }
+  .readout__row::after, .readout__row dd, .readout__status,
+  .case__panel, .case__inner, .case__toggle {
+    transition: none !important;
+  }
+  .reveal-ready [data-reveal] { opacity: 1; transform: none; }
 }

@@ -35,36 +35,27 @@ const capabilities = [
 
 export function Capabilities() {
   return (
-    <section className="capabilities-section" id="capabilities">
+    <section className="capabilities-section" id="capabilities" data-reveal>
       <span className="section-crosshair section-crosshair-top" aria-hidden="true">
         +
       </span>
       <div className="capabilities-heading">
         <motion.h2
-          initial={{ opacity: 0, y: 26 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.72 }}
-          transition={{ duration: 0.76, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
         >
           One technical director. An orchestrated engineering system.
         </motion.h2>
       </div>
       <div className="bento-grid grid-cols-1 md:grid-cols-3">
         {capabilities.map((capability, index) => (
-          <motion.article
+          <article data-reveal style={{ '--rv': `${index * 70}ms` } as React.CSSProperties}
             className={`bento-card magic-card ${capability.className}`}
             key={capability.title}
-            initial={{ opacity: 0, y: 44 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.012 }}
-            viewport={{ once: true, amount: 0.22 }}
-            transition={{ duration: 0.72, delay: index * 0.055, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="mono-tag bento-meta">{capability.meta}</span>
             <h3>{capability.title}</h3>
             <p>{capability.body}</p>
             <span className="bento-stat">{capability.stat}</span>
-          </motion.article>
+          </article>
         ))}
       </div>
     </section>

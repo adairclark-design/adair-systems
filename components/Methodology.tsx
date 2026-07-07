@@ -38,7 +38,7 @@ const operatingPrinciples = [
 
 export function Methodology() {
   return (
-    <section className="relative border-y border-white/[0.07] py-24 sm:py-28" id="methodology">
+    <section className="relative border-y border-white/[0.07] py-24 sm:py-28" id="methodology" data-reveal>
       <span className="section-crosshair section-crosshair-top" aria-hidden="true">
         +
       </span>

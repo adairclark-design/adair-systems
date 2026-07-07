@@ -81,7 +81,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.72, ease: [0.16, 1, 0.3, 1] }}
           >
-            <a className="primary-cta" href="mailto:hello@adair.systems?subject=Agentic%20Build">
+            <a className="primary-cta btn" href="mailto:hello@adair.systems?subject=Agentic%20Build">
               Start a project
             </a>
           </motion.div>
