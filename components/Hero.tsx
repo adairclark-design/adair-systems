@@ -4,6 +4,12 @@ import { motion } from "framer-motion";
 import HeroDepth from "@/components/HeroDepth";
 import EngagementReadout from "@/components/EngagementReadout";
 
+const heroProofPoints = [
+  ["Role", "technical director"],
+  ["Method", "parallel agent workstreams"],
+  ["Outcome", "production software"]
+];
+
 function WordReveal({
   text,
   className,
@@ -78,6 +84,20 @@ export function Hero() {
         <a className="primary-cta btn" href="mailto:hello@adair.systems?subject=Agentic%20Build">
           Start a project
         </a>
+      </motion.div>
+      <motion.div
+        className="hero-proof"
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.72, delay: 0.86, ease: [0.16, 1, 0.3, 1] }}
+        aria-label="Adair Systems engagement proof points"
+      >
+        {heroProofPoints.map(([label, value]) => (
+          <span className="hero-proof__item" key={label}>
+            <span>{label}</span>
+            <strong>{value}</strong>
+          </span>
+        ))}
       </motion.div>
     </>
   );

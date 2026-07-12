@@ -1,32 +1,9 @@
 // @ts-nocheck
 "use client";
 
-import { useState } from "react";
-
-/**
- * CaseStudyItem — expandable portfolio row.
- *
- * Expansion uses the CSS grid 0fr→1fr technique (see interactions.css):
- * animates height-to-auto with zero JS measurement, no reflow jank.
- * Fully keyboard-accessible: the head is a real <button> with
- * aria-expanded/aria-controls.
- *
- * Usage (order and copy per the Phase 2 canonical deck):
- *
- *   <CaseStudyItem
- *     index="01"
- *     kicker="Multi-Agent Intelligence Layer"
- *     title="Polyvision Integration"
- *     outcome="Raw market feeds became interpreted, actionable alerts — removing the manual monitoring layer between data and decision."
- *     tags={["LLM orchestration", "API architecture", "Realtime intelligence"]}
- *   >
- *     Directed a real-time intelligence product across market data
- *     ingestion, API architecture, alerting, and LLM-assisted
- *     interpretation. Agentic execution coordinated the interface and
- *     backend workstreams while I controlled system boundaries,
- *     integration quality, and release readiness.
- *   </CaseStudyItem>
- */
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 type CaseStudyItemProps = {
   index: string;
@@ -34,6 +11,7 @@ type CaseStudyItemProps = {
   title: string;
   outcome?: string;
   tags?: string[];
+  images?: string[];
   defaultOpen?: boolean;
   children: React.ReactNode;
 };
@@ -44,11 +22,66 @@ export default function CaseStudyItem({
   title,
   outcome,
   tags = [],
+  images = [],
   defaultOpen = false,
   children,
 }: CaseStudyItemProps) {
   const [open, setOpen] = useState(defaultOpen);
+  const [activeImage, setActiveImage] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
   const panelId = `case-panel-${index}`;
+  const lightboxOpen = activeImage !== null;
+  const activeSrc = lightboxOpen ? images[activeImage] : null;
+
+  function closeLightbox() {
+    setActiveImage(null);
+  }
+
+  function showPrevious() {
+    setActiveImage((current) => {
+      if (current === null || images.length === 0) return current;
+      return (current - 1 + images.length) % images.length;
+    });
+  }
+
+  function showNext() {
+    setActiveImage((current) => {
+      if (current === null || images.length === 0) return current;
+      return (current + 1) % images.length;
+    });
+  }
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        closeLightbox();
+      }
+
+      if (event.key === "ArrowLeft") {
+        showPrevious();
+      }
+
+      if (event.key === "ArrowRight") {
+        showNext();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [lightboxOpen, images.length]);
 
   return (
     <article className={`case${open ? " case--open" : ""}`}>
@@ -78,8 +111,110 @@ export default function CaseStudyItem({
               ))}
             </ul>
           )}
+
+          {open && images.length > 0 && (
+            <div className="case-lightbox-thumbs" aria-label={`${title} screenshots`}>
+              {images.map((src, imageIndex) => (
+                <button
+                  type="button"
+                  className="case-lightbox-thumb"
+                  key={src}
+                  onClick={() => setActiveImage(imageIndex)}
+                  aria-label={`Open ${title} screenshot ${imageIndex + 1}`}
+                >
+                  <img
+                    src={src}
+                    alt={`${title} screenshot ${imageIndex + 1}`}
+                    loading="lazy"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
+
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {lightboxOpen && activeSrc && (
+              <motion.div
+                className="case-lightbox"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                onClick={closeLightbox}
+                role="dialog"
+                aria-modal="true"
+                aria-label={`${title} screenshot viewer`}
+              >
+                <button
+                  type="button"
+                  className="case-lightbox__close"
+                  onClick={closeLightbox}
+                  aria-label="Close screenshot viewer"
+                >
+                  ×
+                </button>
+
+                {images.length > 1 && (
+                  <button
+                    type="button"
+                    className="case-lightbox__nav case-lightbox__nav--prev"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      showPrevious();
+                    }}
+                    aria-label="Previous screenshot"
+                  >
+                    ‹
+                  </button>
+                )}
+
+                <div
+                  className="case-lightbox__stage"
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={activeSrc}
+                      src={activeSrc}
+                      alt={`${title} screenshot ${activeImage + 1}`}
+                      className="case-lightbox__image"
+                      initial={{ opacity: 0, scale: 0.985 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.015 }}
+                      transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                    />
+                  </AnimatePresence>
+
+                  <div className="case-lightbox__meta">
+                    <span>{title}</span>
+                    <span>
+                      {activeImage + 1} / {images.length}
+                    </span>
+                  </div>
+                </div>
+
+                {images.length > 1 && (
+                  <button
+                    type="button"
+                    className="case-lightbox__nav case-lightbox__nav--next"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      showNext();
+                    }}
+                    aria-label="Next screenshot"
+                  >
+                    ›
+                  </button>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
     </article>
   );
 }

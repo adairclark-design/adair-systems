@@ -11,10 +11,12 @@ const caseStudies = [
       "Directed a real-time intelligence product across market data ingestion, API architecture, alerting, and LLM-assisted interpretation. Agentic execution coordinated the interface and backend workstreams while I controlled system boundaries, integration quality, and release readiness.",
     outcome: "Raw market feeds became interpreted, actionable alerts — removing the manual monitoring layer between data and decision.",
     tags: ["LLM orchestration", "API architecture", "Realtime intelligence"],
-    image: "/polyvision.png",
-    alt: "PolyVision AI edge prediction market intelligence landing page",
-    width: 2936,
-    height: 1600
+    images: [
+      "/project-images/PolyVision 1.png",
+      "/project-images/PolyVision 2.png",
+      "/project-images/PolyVision 3.png",
+      "/project-images/PolyVision 4.png"
+    ]
   },
   {
     eyebrow: "Orchestrated decision system",
@@ -23,10 +25,12 @@ const caseStudies = [
       "Orchestrated a data-rich agricultural platform combining crop intelligence, planning rules, search, and high-density interaction design. Agent teams handled data modeling, interface systems, and decision logic concurrently, compressing a complex product into one cohesive experience.",
     outcome: "Planning decisions that required cross-referencing multiple data sources now resolve in one query.",
     tags: ["Agent orchestration", "Decision systems", "Data-rich UX"],
-    image: "/acrelogic.png",
-    alt: "AcreLogic crop selection interface for intelligent gardening and agriculture planning",
-    width: 2932,
-    height: 1580
+    images: [
+      "/project-images/AcreLogic 1.png",
+      "/project-images/AcreLogic 2.png",
+      "/project-images/AcreLogic 3.png",
+      "/project-images/AcreLogic 4.png"
+    ]
   },
   {
     eyebrow: "Agentic product architecture",
@@ -35,10 +39,15 @@ const caseStudies = [
       "Directed a multi-surface product build spanning client onboarding, training workflows, workout tracking, and AI-assisted nutrition planning. Specialized agents advanced frontend, backend, and product logic in parallel while I governed the architecture and integration layer.",
     outcome: "Onboarding, training, and nutrition planning now run in one platform, replacing the spreadsheets and manual check-ins the business ran on.",
     tags: ["Agentic full stack", "AI planning", "Client platform"],
-    image: "/tristan-app.png",
-    alt: "TDT Training training plan and nutrition dashboard interface",
-    width: 3012,
-    height: 1610
+    images: [
+      "/project-images/TDT 1.png",
+      "/project-images/TDT 2.png",
+      "/project-images/TDT 3.png",
+      "/project-images/TDT 4.png",
+      "/project-images/TDT 5.png",
+      "/project-images/TDT 6.png",
+      "/project-images/TDT 7.png"
+    ]
   },
   {
     eyebrow: "AI-accelerated brand platform",
@@ -47,10 +56,13 @@ const caseStudies = [
       "Directed an AI-accelerated redesign across brand language, content architecture, responsive components, and conversion flows. The orchestration model moved strategy, design, and implementation forward together while preserving a deliberate executive-grade finish.",
     outcome: "Strategy, design, and implementation moved as one workstream, collapsing the usual agency hand-off cycle entirely.",
     tags: ["AI-directed design", "B2B systems", "Rapid deployment"],
-    image: "/rapp-consulting.png",
-    alt: "Rapp Consulting premium nonprofit consulting website homepage redesign",
-    width: 2934,
-    height: 1588
+    images: [
+      "/project-images/RAPP 1.png",
+      "/project-images/RAPP 2.png",
+      "/project-images/RAPP 3.png",
+      "/project-images/RAPP 4.png",
+      "/project-images/RAPP 5.png"
+    ]
   }
 ];
 
@@ -130,6 +142,7 @@ export function CaseStudy() {
             title={project.title}
             outcome={project.outcome}
             tags={project.tags}
+            images={project.images}
           >
             {project.description}
           </CaseStudyItem>
