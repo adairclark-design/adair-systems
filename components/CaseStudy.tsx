@@ -5,59 +5,51 @@ import CaseStudyItem from "@/components/CaseStudyItem";
 
 const caseStudies = [
   {
-    eyebrow: "Multi-agent intelligence layer",
+    eyebrow: "Real-time market systems",
     title: "Polyvision Integration",
-    description:
-      "Directed a real-time intelligence product across market data ingestion, API architecture, alerting, and LLM-assisted interpretation. Agentic execution coordinated the interface and backend workstreams while I controlled system boundaries, integration quality, and release readiness.",
-    outcome: "Raw market feeds became interpreted, actionable alerts — removing the manual monitoring layer between data and decision.",
-    tags: ["LLM orchestration", "API architecture", "Realtime intelligence"],
+    description: "I built market data ingestion, API integration, alert delivery, and the interface for monitoring live market activity.",
+    outcome: "Market feeds and alerts are brought into one monitoring workflow.",
+    tags: ["Data ingestion", "API architecture", "Real-time interfaces"],
     images: [
-      "/project-images/PolyVision 1.png",
       "/project-images/PolyVision 2.png",
       "/project-images/PolyVision 3.png",
       "/project-images/PolyVision 4.png"
     ]
   },
   {
-    eyebrow: "Orchestrated decision system",
+    eyebrow: "Agricultural planning software",
     title: "AcreLogic",
-    description:
-      "Orchestrated a data-rich agricultural platform combining crop intelligence, planning rules, search, and high-density interaction design. Agent teams handled data modeling, interface systems, and decision logic concurrently, compressing a complex product into one cohesive experience.",
-    outcome: "Planning decisions that required cross-referencing multiple data sources now resolve in one query.",
-    tags: ["Agent orchestration", "Decision systems", "Data-rich UX"],
+    description: "I built a planning interface that connects agricultural data, search, and business rules in one application.",
+    outcome: "Search, planning inputs, and supporting data share one workspace.",
+    tags: ["Data architecture", "Planning rules", "Data-rich UX"],
     images: [
       "/project-images/AcreLogic 1.png",
       "/project-images/AcreLogic 2.png",
       "/project-images/AcreLogic 3.png",
-      "/project-images/AcreLogic 4.png"
     ]
   },
   {
-    eyebrow: "Agentic product architecture",
+    eyebrow: "Training & nutrition platform",
     title: "TDT Training",
-    description:
-      "Directed a multi-surface product build spanning client onboarding, training workflows, workout tracking, and AI-assisted nutrition planning. Specialized agents advanced frontend, backend, and product logic in parallel while I governed the architecture and integration layer.",
-    outcome: "Onboarding, training, and nutrition planning now run in one platform, replacing the spreadsheets and manual check-ins the business ran on.",
-    tags: ["Agentic full stack", "AI planning", "Client platform"],
+    description: "I built onboarding, workout tracking, and training and nutrition workflows across a connected client platform.",
+    outcome: "Client onboarding, training, and nutrition workflows are available in one platform.",
+    tags: ["Full-stack development", "Calculation pipelines", "Client workflows"],
     images: [
       "/project-images/TDT 1.png",
       "/project-images/TDT 2.png",
       "/project-images/TDT 3.png",
       "/project-images/TDT 4.png",
-      "/project-images/TDT 5.png",
       "/project-images/TDT 6.png",
       "/project-images/TDT 7.png"
     ]
   },
   {
-    eyebrow: "AI-accelerated brand platform",
+    eyebrow: "B2B web platform",
     title: "RappConsulting",
-    description:
-      "Directed an AI-accelerated redesign across brand language, content architecture, responsive components, and conversion flows. The orchestration model moved strategy, design, and implementation forward together while preserving a deliberate executive-grade finish.",
-    outcome: "Strategy, design, and implementation moved as one workstream, collapsing the usual agency hand-off cycle entirely.",
-    tags: ["AI-directed design", "B2B systems", "Rapid deployment"],
+    description: "I designed and implemented the responsive site, content structure, and contact flows for an executive consulting practice.",
+    outcome: "Services and contact pathways are presented in a cohesive responsive experience.",
+    tags: ["Responsive interfaces", "Content architecture", "B2B web development"],
     images: [
-      "/project-images/RAPP 1.png",
       "/project-images/RAPP 2.png",
       "/project-images/RAPP 3.png",
       "/project-images/RAPP 4.png",
@@ -70,7 +62,7 @@ function ScrollWords({ text }: { text: string }) {
   return (
     <motion.span
       className="word-reveal scroll-word-reveal"
-      initial="hidden"
+      initial={false}
       whileInView="visible"
       viewport={{ once: true, amount: 0.8 }}
       variants={{
@@ -78,10 +70,10 @@ function ScrollWords({ text }: { text: string }) {
         visible: { transition: { staggerChildren: 0.045 } }
       }}
     >
-      {text.split(" ").map((word) => (
+      {text.split(" ").map((word, index) => (
         <motion.span
           className="reveal-word"
-          key={word}
+          key={`${word}-${index}`}
           variants={{
             hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
             visible: {
@@ -108,7 +100,7 @@ export function CaseStudy() {
       <div className="featured-heading">
         <motion.span
           className="section-kicker mono-tag"
-          initial={{ opacity: 0, y: 18 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.66, ease: [0.16, 1, 0.3, 1] }}
@@ -116,7 +108,7 @@ export function CaseStudy() {
           [ PORTFOLIO ]
         </motion.span>
         <motion.h2
-          initial={{ opacity: 0, y: 26 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.72 }}
           transition={{ duration: 0.76, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
@@ -124,16 +116,15 @@ export function CaseStudy() {
           <ScrollWords text="Systems in production." />
         </motion.h2>
         <motion.p
-          initial={{ opacity: 0, y: 24 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.72 }}
           transition={{ duration: 0.76, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
         >
-          Portfolio work spanning AI applications, agricultural intelligence, executive B2B web design,
-          and backend systems built to carry real business logic.
+          Selected work across market data, agricultural planning, training platforms, and B2B web experiences.
         </motion.p>
       </div>
-      <div>
+      <div className="relative z-[1] mx-auto w-[var(--container)]">
         {caseStudies.map((project, index) => (
           <CaseStudyItem
             key={project.title}
@@ -143,6 +134,7 @@ export function CaseStudy() {
             outcome={project.outcome}
             tags={project.tags}
             images={project.images}
+            defaultOpen={index === 0}
           >
             {project.description}
           </CaseStudyItem>

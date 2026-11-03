@@ -10,9 +10,9 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
+      <CaseStudy />
       <Capabilities />
       <Methodology />
-      <CaseStudy />
       <Footer />
     </main>
   );

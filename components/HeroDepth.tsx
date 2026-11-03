@@ -1,7 +1,6 @@
-// @ts-nocheck
 "use client";
 
-import { useRef, type ReactNode, type CSSProperties } from "react";
+import { useRef, type ReactNode } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 
 /**
@@ -52,7 +51,6 @@ export default function HeroDepth({ field, content, panel }: Props) {
   const fieldY = useTransform(scrollYProgress, [0, 1], [0, 110]);
   const fieldScale = useTransform(scrollYProgress, [0, 1], [1, 1.06]);
   const contentY = useTransform(scrollYProgress, [0, 1], [0, -70]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
   const panelY = useTransform(scrollYProgress, [0, 1], [0, -28]);
 
   if (reduced) {
@@ -71,18 +69,18 @@ export default function HeroDepth({ field, content, panel }: Props) {
     <section ref={ref} className="hero hero--depth" id="home">
       <motion.div
         className="hero-field-layer"
-        style={{ y: fieldY, scale: fieldScale } as CSSProperties}
+        style={{ y: fieldY, scale: fieldScale }}
       >
         {field}
       </motion.div>
       <div className="hero__grid">
         <motion.div
           className="hero__content"
-          style={{ y: contentY, opacity: contentOpacity } as CSSProperties}
+          style={{ y: contentY }}
         >
           {content}
         </motion.div>
-        <motion.div className="hero__panel" style={{ y: panelY } as CSSProperties}>
+        <motion.div className="hero__panel" style={{ y: panelY }}>
           {panel}
         </motion.div>
       </div>

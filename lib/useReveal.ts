@@ -36,7 +36,7 @@ export default function useReveal(selector = "[data-reveal]") {
           }
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -48px 0px" }
+      { threshold: 0, rootMargin: "0px 0px -48px 0px" }
     );
 
     els.forEach((el) => io.observe(el));

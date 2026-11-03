@@ -7,14 +7,16 @@ import { Check, Copy, ArrowUpRight } from "lucide-react";
 export function Footer() {
   const [copied, setCopied] = useState(false);
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText("hello@adair.systems");
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("hello@adair.systems");
+    } catch { window.location.href = "mailto:hello@adair.systems"; return; }
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <footer className="relative mt-24 border-t border-white/10 bg-[#05050A] pb-12 pt-32">
+    <footer className="relative mt-24 border-t border-white/10 bg-[#05050A] overflow-hidden pb-12 pt-32">
       {/* Background Glow */}
       <div className="absolute inset-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(102,255,204,0.4)] to-transparent" />
       <div className="absolute left-1/2 top-0 h-[300px] w-[800px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,rgba(102,255,204,0.1),transparent_70%)] pointer-events-none" />
@@ -23,16 +25,16 @@ export function Footer() {
         <div className="flex flex-col items-center text-center">
           <motion.span
             className="section-kicker mono-tag mb-8"
-            initial={{ opacity: 0, y: 18 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            // CURRENTLY BOOKING: Q3 2026
+            // ENGINEERING ROLES & PROJECTS
           </motion.span>
           
           <motion.h2 
             className="mb-12 max-w-2xl text-5xl font-black tracking-tight text-white sm:text-7xl"
-            initial={{ opacity: 0, y: 24 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
@@ -42,7 +44,7 @@ export function Footer() {
           </motion.h2>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
@@ -53,7 +55,7 @@ export function Footer() {
             >
               <div className="flex flex-col items-start">
                 <span className="text-xs font-semibold uppercase tracking-widest text-slate-400">
-                  Email directly
+                  {copied ? "Email copied" : "Copy email address"}
                 </span>
                 <span className="text-xl font-bold tracking-tight text-white sm:text-2xl">
                   hello@adair.systems

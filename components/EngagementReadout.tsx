@@ -1,16 +1,15 @@
-// @ts-nocheck
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 /**
  * EngagementReadout v2 — boots like an instrument.
  *
  * Sequence on first view (~1.1s total):
- *   1. [ ENGAGEMENT MODEL ] resolves through a character scramble
+ *   1. [ ENGINEERING SCOPE ] resolves through a character scramble
  *   2. rows come online in order: hairline draws, label decodes,
  *      value fades up 4px (CSS handles rules/values via --boot-i)
- *   3. the ACCEPTING PROJECTS status lights last
+ *   3. the LET’S TALK status lights last
  *
  * Server render and no-JS output the finished panel (SEO-safe,
  * nothing hidden without JS). prefers-reduced-motion skips the
@@ -18,16 +17,16 @@ import { useEffect, useRef, useState } from "react";
  */
 
 const ROWS = [
-  ["Direction", "Adair Clark — one accountable technical architect"],
-  ["Execution", "Specialized AI agents, running parallel workstreams"],
-  ["Review", "Human judgment at every integration boundary"],
+  ["Engineer", "Adair Clark — architecture and implementation"],
+  ["Build", "Interfaces, APIs, real-time services, and data systems"],
+  ["Quality", "Typed contracts, integration tests, and release checks"],
   ["Delivery", "Production software — maintainable, documented, yours"],
 ];
 
 const CHARSET = "ABCDEFGHIJKLMNPQRSTUVWXYZ0123456789";
 
 /** Text that resolves left-to-right through random characters. */
-function Scramble({ text, play, delay = 0 }) {
+function Scramble({ text, play, delay = 0 }: { text: string; play: boolean; delay?: number }) {
   const [out, setOut] = useState(text); // server + no-motion: final text
   useEffect(() => {
     if (!play) { setOut(text); return; }
@@ -35,7 +34,7 @@ function Scramble({ text, play, delay = 0 }) {
     let startAt = 0;
     const duration = 380;
     const timer = setTimeout(() => {
-      const tick = (now) => {
+      const tick = (now: number) => {
         if (!startAt) startAt = now;
         const resolved = Math.floor(
           ((now - startAt) / duration) * text.length
@@ -54,11 +53,11 @@ function Scramble({ text, play, delay = 0 }) {
     }, delay);
     return () => { clearTimeout(timer); cancelAnimationFrame(raf); };
   }, [play, text, delay]);
-  return <>{out}</>;
+  return <><span className="sr-only">{text}</span><span aria-hidden="true">{out}</span></>;
 }
 
 export default function EngagementReadout() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement>(null);
   const [phase, setPhase] = useState("static"); // static | armed | boot
 
   useEffect(() => {
@@ -85,14 +84,14 @@ export default function EngagementReadout() {
     (booting ? " readout--armed readout--boot" : "");
 
   return (
-    <aside ref={ref} className={cls} aria-label="Engagement model">
+    <aside ref={ref} className={cls} aria-label="Engineering scope">
       <div className="readout__head">
         <span className="readout__label">
-          <Scramble text="[ ENGAGEMENT MODEL ]" play={booting} delay={0} />
+          <Scramble text="[ ENGINEERING SCOPE ]" play={booting} delay={0} />
         </span>
         <span className="readout__status">
           <span className="readout__dot" aria-hidden="true" />
-          ACCEPTING PROJECTS
+          LET’S TALK
         </span>
       </div>
 
@@ -101,7 +100,7 @@ export default function EngagementReadout() {
           <div
             key={label}
             className="readout__row"
-            style={{ "--boot-i": i }}
+            style={{ "--boot-i": i } as CSSProperties}
           >
             <dt>
               <Scramble text={label} play={booting} delay={260 + i * 140} />

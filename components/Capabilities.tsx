@@ -4,31 +4,31 @@ import { motion } from "framer-motion";
 
 const capabilities = [
   {
-    meta: "[ AGENT ORCHESTRATION ]",
-    title: "Multi-Agent Engineering Systems",
-    body: "I direct specialized AI agents across product strategy, frontend, backend, data, and QA—turning one business objective into coordinated production work.",
-    stat: "Parallel execution",
+    meta: "[ FRONTEND & PRODUCT ]",
+    title: "Product interfaces & applications",
+    body: "I build responsive web and mobile experiences with Next.js, React, TypeScript, and deliberate CSS and motion systems.",
+    stat: "Web · Mobile · PWA",
     className: "md:col-span-2"
   },
   {
-    meta: "[ SPECIFICATION DESIGN ]",
-    title: "Advanced Prompt Architecture",
-    body: "Ambiguous requirements become precise system prompts, constraints, acceptance criteria, and implementation plans that agents can execute reliably.",
-    stat: "Context control",
+    meta: "[ BACKEND & REAL-TIME ]",
+    title: "APIs & connected systems",
+    body: "I implement Python and Node.js services, REST and WebSocket APIs, authentication, and real-time data ingestion.",
+    stat: "FastAPI · Node.js · APIs",
     className: "md:col-span-1"
   },
   {
-    meta: "[ TECHNICAL DIRECTION ]",
-    title: "Human-Governed AI Delivery",
-    body: "I review architecture, resolve agent conflicts, enforce security and quality, and remain accountable for every system decision that ships.",
-    stat: "Expert oversight",
+    meta: "[ DATA & LOGIC ]",
+    title: "Data architecture & rule engines",
+    body: "I design database schemas and implement rule-based decisions, automated alerts, and domain-specific calculation pipelines.",
+    stat: "Schemas · Rules · Calculations",
     className: "md:col-span-1"
   },
   {
-    meta: "[ ACCELERATED DELIVERY ]",
-    title: "AI-Accelerated Full-Stack Deployment",
-    body: "Build, test, integration, and release workflows run in parallel to compress delivery cycles without trading away maintainability or polish.",
-    stat: "Ship velocity",
+    meta: "[ SYSTEMS & RELEASE ]",
+    title: "Architecture through deployment",
+    body: "I turn business requirements into system boundaries and data contracts, then build, integrate, test, and deploy the implementation.",
+    stat: "Contracts · Tests · Deployment",
     className: "md:col-span-2"
   }
 ];
@@ -42,7 +42,7 @@ export function Capabilities() {
       <div className="capabilities-heading">
         <motion.h2
         >
-          One technical director. An orchestrated engineering system.
+          Engineering across the stack.
         </motion.h2>
       </div>
       <div className="bento-grid grid-cols-1 md:grid-cols-3">

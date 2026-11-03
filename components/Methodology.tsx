@@ -15,14 +15,14 @@ const stages = [
   {
     number: "02",
     icon: Workflow,
-    title: "Orchestrate specialist agents",
-    body: "Focused agents advance product, interface, backend, data, and testing workstreams in parallel with tightly controlled context and responsibilities."
+    title: "Build across the stack",
+    body: "I implement the interface, backend services, data layer, and tests against explicit contracts and acceptance criteria."
   },
   {
     number: "03",
     icon: ShieldCheck,
-    title: "Integrate and govern",
-    body: "I reconcile outputs, resolve architectural conflicts, review security boundaries, and enforce one coherent engineering standard across the entire build."
+    title: "Integrate and test",
+    body: "I connect the components, test real workflows and failure paths, and verify authentication, data integrity, and error handling."
   },
   {
     number: "04",
@@ -33,9 +33,9 @@ const stages = [
 ];
 
 const operatingPrinciples = [
-  { label: "Parallel", value: "Multiple engineering workstreams" },
-  { label: "Governed", value: "Human review at every boundary" },
-  { label: "Accountable", value: "One technical director" }
+  { label: "Design", value: "Explicit system boundaries" },
+  { label: "Build", value: "Implementation across the stack" },
+  { label: "Verify", value: "Tested integration and release" }
 ];
 
 export function Methodology() {
@@ -49,25 +49,25 @@ export function Methodology() {
       <div className="mx-auto w-[var(--container)] py-24 sm:py-28">
         <div className="grid items-start gap-8 lg:grid-cols-[1.18fr_0.82fr] lg:gap-16">
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.45 }}
             transition={{ duration: 0.76, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="mono-tag text-xs text-cyan-100/70">[ AGENTIC METHODOLOGY ]</span>
+            <span className="mono-tag text-xs text-cyan-100/70">[ ENGINEERING PROCESS ]</span>
             <h2 className="mt-6 max-w-[13ch] text-[1.6875rem] font-extrabold leading-[1.02] text-white sm:text-4xl lg:text-[2.8125rem]">
-              Direction is the engineering multiplier.
+              From requirements to working systems.
             </h2>
           </motion.div>
 
           <motion.p
             className="m-0 max-w-2xl text-base leading-7 text-slate-300/75 sm:text-lg sm:leading-8 lg:pt-12"
-            initial={{ opacity: 0, y: 24 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.72, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
           >
-            I translate business intent into executable system specifications, direct specialized AI agents across the stack, and integrate their work into one production-grade platform.
+            I define the architecture, write the implementation, and test the complete system against the workflows it needs to support.
           </motion.p>
         </div>
       </div>
@@ -85,7 +85,7 @@ export function Methodology() {
       <div className="mx-auto w-[var(--container)] pb-24 sm:pb-28">
         <motion.div
           className="mt-14 grid overflow-hidden rounded-[8px] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.075),rgba(255,255,255,0.025)),rgba(7,7,15,0.72)] shadow-[0_36px_120px_rgba(0,0,0,0.38),0_0_72px_rgba(100,92,255,0.08)] backdrop-blur-2xl lg:grid-cols-[1.05fr_0.95fr]"
-          initial={{ opacity: 0, y: 42 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.05 }}
           transition={{ duration: 0.82, ease: [0.16, 1, 0.3, 1] }}
@@ -98,7 +98,7 @@ export function Methodology() {
                 <motion.article
                   className="grid gap-5 p-7 sm:grid-cols-[48px_1fr] sm:p-8"
                   key={stage.number}
-                  initial={{ opacity: 0, x: 24 }}
+                  initial={false}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.55 }}
                   transition={{ duration: 0.62, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
@@ -109,7 +109,7 @@ export function Methodology() {
                   <div>
                     <div className="flex items-baseline gap-3">
                       <span className="mono-tag text-[0.68rem] text-cyan-200/60">{stage.number}</span>
-                      <h4 className="m-0 text-lg font-bold text-white">{stage.title}</h4>
+                      <h3 className="m-0 text-lg font-bold text-white">{stage.title}</h3>
                     </div>
                     <p className="mt-3 text-sm leading-6 text-slate-300/68">{stage.body}</p>
                   </div>
@@ -120,13 +120,13 @@ export function Methodology() {
 
           <div className="flex flex-col justify-between border-t border-white/10 p-8 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
             <div>
-              <span className="mono-tag text-xs text-slate-400">[ ADVANTAGE ]</span>
+              <span className="mono-tag text-xs text-slate-400">[ TECHNICAL OWNERSHIP ]</span>
               <p className="mt-6 max-w-xl text-base leading-7 text-slate-300/70">
-                The advantage is not generated code. It is disciplined orchestration: the right agents, the right context, explicit system constraints, and senior review at every integration point.
+                I work across interface, service, and data boundaries. I trace requirements through the implementation, diagnose failures, and make tradeoffs with the whole system in view.
               </p>
             </div>
             <div className="mt-10 border-l-2 border-[#2DD4C2]/55 pl-5 text-sm leading-6 text-slate-300/75">
-              Faster iteration without outsourcing architecture, security, or accountability to the model.
+              Clear contracts. Inspectable logic. Repeatable releases.
             </div>
           </div>
         </motion.div>
