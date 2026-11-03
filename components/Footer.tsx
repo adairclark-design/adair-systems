@@ -16,10 +16,10 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative mt-24 border-t border-white/10 bg-[#05050A] overflow-hidden pb-12 pt-32">
+    <footer className="relative mt-24 border-t border-white/10 bg-[var(--bg)] overflow-hidden pb-12 pt-32">
       {/* Background Glow */}
-      <div className="absolute inset-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(102,255,204,0.4)] to-transparent" />
-      <div className="absolute left-1/2 top-0 h-[300px] w-[800px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,rgba(102,255,204,0.1),transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(var(--accent-teal-rgb),0.4)] to-transparent" />
+      <div className="absolute left-1/2 top-0 h-[300px] w-[800px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,rgba(var(--accent-teal-rgb),0.1),transparent_70%)] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-[min(1160px,calc(100vw-40px))]">
         <div className="flex flex-col items-center text-center">
@@ -33,14 +33,14 @@ export function Footer() {
           </motion.span>
           
           <motion.h2 
-            className="mb-12 max-w-2xl text-5xl font-black tracking-tight text-white sm:text-7xl"
+            className="mb-12 max-w-2xl text-5xl font-semibold tracking-tight text-white sm:text-7xl"
             initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
             Let&apos;s Build <br/>
-            <span className="bg-gradient-to-r from-[#66FFCC] to-[#BA66FF] bg-clip-text text-transparent">Something.</span>
+            <span className="bg-gradient-to-r from-[var(--accent-teal-text)] to-[var(--accent-violet-text)] bg-clip-text text-transparent">Something.</span>
           </motion.h2>
 
           <motion.div
@@ -51,7 +51,7 @@ export function Footer() {
           >
             <button
               onClick={handleCopyEmail}
-              className="group relative flex items-center gap-4 overflow-hidden rounded-full border border-white/10 bg-white/5 px-8 py-5 transition-all hover:border-[#66FFCC]/40 hover:bg-white/10 hover:shadow-[0_0_32px_rgba(102,255,204,0.15)] active:scale-95"
+              className="group relative flex items-center gap-4 overflow-hidden rounded-full border border-white/10 bg-white/5 px-8 py-5 transition-all hover:border-[var(--accent-teal-text)]/40 hover:bg-white/10 hover:shadow-[0_0_32px_rgba(var(--accent-teal-rgb),0.15)] active:scale-95"
             >
               <div className="flex flex-col items-start">
                 <span className="text-xs font-semibold uppercase tracking-widest text-slate-400">
@@ -61,7 +61,7 @@ export function Footer() {
                   hello@adair.systems
                 </span>
               </div>
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-[#66FFCC]/20 group-hover:text-[#66FFCC]">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-[var(--accent-teal-text)]/20 group-hover:text-[var(--accent-teal-text)]">
                 {copied ? <Check className="h-5 w-5 text-green-400" /> : <Copy className="h-5 w-5" />}
               </div>
             </button>
@@ -88,7 +88,7 @@ export function Footer() {
               href="https://www.linkedin.com/in/adair-clark-0380b9239"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 text-sm font-semibold text-slate-400 transition-colors hover:text-[#BA66FF]"
+              className="group flex items-center gap-2 text-sm font-semibold text-slate-400 transition-colors hover:text-[var(--accent-violet-text)]"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
               LinkedIn

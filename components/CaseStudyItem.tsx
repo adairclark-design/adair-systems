@@ -75,8 +75,8 @@ export default function CaseStudyItem({ index, kicker, title, outcome, tags = []
     <h3 className="case__heading">
       <button type="button" className="case__head" aria-expanded={open} aria-controls={panelId}
         id={`${panelId}-heading`} onClick={() => setOpen(value => !value)}>
-        <span className="case__index">{index}</span>
-        <span className="case__meta"><span className="case__kicker">{kicker}</span><span className="case__title">{title}</span></span>
+        <span className="case__cover" aria-hidden="true"><img src={images[0]} alt="" loading="lazy" /></span>
+        <span className="case__meta"><span className="case__kicker">{index} / {kicker}</span><span className="case__title">{title}</span><span className="case__scope">{tags.join(" · ")}</span></span>
         <span className="case__toggle" aria-hidden="true" />
       </button>
     </h3>

@@ -1,114 +1,21 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
-
-/**
- * EngagementReadout v2 — boots like an instrument.
- *
- * Sequence on first view (~1.1s total):
- *   1. [ ENGINEERING SCOPE ] resolves through a character scramble
- *   2. rows come online in order: hairline draws, label decodes,
- *      value fades up 4px (CSS handles rules/values via --boot-i)
- *   3. the LET’S TALK status lights last
- *
- * Server render and no-JS output the finished panel (SEO-safe,
- * nothing hidden without JS). prefers-reduced-motion skips the
- * boot entirely. Runs once per page view.
- */
-
-const ROWS = [
-  ["Engineer", "Adair Clark — architecture and implementation"],
-  ["Build", "Interfaces, APIs, real-time services, and data systems"],
-  ["Quality", "Typed contracts, integration tests, and release checks"],
-  ["Delivery", "Production software — maintainable, documented, yours"],
+import { useState } from "react";
+const products = [
+  {name:"PolyVision", file:"PolyVision 2.png", title:"Market activity", scope:"Market feeds · Alert delivery", alt:"PolyVision market feed with filters and trader leaderboard"},
+  {name:"AcreLogic", file:"AcreLogic 3.png", title:"Field planning", scope:"Spatial layout · Planning rules", alt:"AcreLogic field map with editable planting blocks and bed dimensions"},
+  {name:"TDT Training", file:"TDT 4.png", title:"Nutrition tracking", scope:"Food logging · Nutrient totals", alt:"TDT mobile food log showing a portion calculation and daily nutrient totals"}
 ];
-
-const CHARSET = "ABCDEFGHIJKLMNPQRSTUVWXYZ0123456789";
-
-/** Text that resolves left-to-right through random characters. */
-function Scramble({ text, play, delay = 0 }: { text: string; play: boolean; delay?: number }) {
-  const [out, setOut] = useState(text); // server + no-motion: final text
-  useEffect(() => {
-    if (!play) { setOut(text); return; }
-    let raf = 0;
-    let startAt = 0;
-    const duration = 380;
-    const timer = setTimeout(() => {
-      const tick = (now: number) => {
-        if (!startAt) startAt = now;
-        const resolved = Math.floor(
-          ((now - startAt) / duration) * text.length
-        );
-        if (resolved >= text.length) { setOut(text); return; }
-        let s = "";
-        for (let i = 0; i < text.length; i++) {
-          s += i < resolved || text[i] === " " || text[i] === "[" || text[i] === "]"
-            ? text[i]
-            : CHARSET[(Math.random() * CHARSET.length) | 0];
-        }
-        setOut(s);
-        raf = requestAnimationFrame(tick);
-      };
-      raf = requestAnimationFrame(tick);
-    }, delay);
-    return () => { clearTimeout(timer); cancelAnimationFrame(raf); };
-  }, [play, text, delay]);
-  return <><span className="sr-only">{text}</span><span aria-hidden="true">{out}</span></>;
-}
-
 export default function EngagementReadout() {
-  const ref = useRef<HTMLElement>(null);
-  const [phase, setPhase] = useState("static"); // static | armed | boot
-
-  useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return; // stays "static": finished panel, no boot
-    setPhase("armed");
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setPhase("boot");
-          io.disconnect();
-        }
-      },
-      { threshold: 0.4 }
-    );
-    if (ref.current) io.observe(ref.current);
-    return () => io.disconnect();
-  }, []);
-
-  const booting = phase === "boot";
-  const cls =
-    "readout" +
-    (phase === "armed" ? " readout--armed" : "") +
-    (booting ? " readout--armed readout--boot" : "");
-
-  return (
-    <aside ref={ref} className={cls} aria-label="Engineering scope">
-      <div className="readout__head">
-        <span className="readout__label">
-          <Scramble text="[ ENGINEERING SCOPE ]" play={booting} delay={0} />
-        </span>
-        <span className="readout__status">
-          <span className="readout__dot" aria-hidden="true" />
-          LET’S TALK
-        </span>
-      </div>
-
-      <dl className="readout__rows">
-        {ROWS.map(([label, value], i) => (
-          <div
-            key={label}
-            className="readout__row"
-            style={{ "--boot-i": i } as CSSProperties}
-          >
-            <dt>
-              <Scramble text={label} play={booting} delay={260 + i * 140} />
-            </dt>
-            <dd>{value}</dd>
-          </div>
-        ))}
-      </dl>
-    </aside>
-  );
+  const [selected, select] = useState(0);
+  const product = products[selected];
+  return <section className="product-stage" aria-label="Selected product previews">
+    <div className="stage-heading"><span>PRODUCT PREVIEW</span><span>0{selected+1} / 03</span></div>
+    <div className="stage-frame">
+      <div className="stage-chrome"><span aria-hidden="true">● ● ●</span><span>{product.name} / {product.title}</span></div>
+      <div className={'stage-screen'+(selected===2?' stage-mobile':'')}><img key={product.file} src={'/project-images/'+product.file} alt={product.alt} fetchPriority={selected===0?'high':'auto'}/></div>
+      <p aria-live="polite">{product.scope}</p>
+    </div>
+    <div className="stage-switch" role="group" aria-label="Choose a product">{products.map((p,i)=><button type="button" key={p.name} aria-pressed={selected===i} onClick={()=>select(i)}>{p.name}</button>)}</div>
+  </section>;
 }

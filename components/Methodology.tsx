@@ -54,8 +54,8 @@ export function Methodology() {
             viewport={{ once: true, amount: 0.45 }}
             transition={{ duration: 0.76, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="mono-tag text-xs text-cyan-100/70">[ ENGINEERING PROCESS ]</span>
-            <h2 className="mt-6 max-w-[13ch] text-[1.6875rem] font-extrabold leading-[1.02] text-white sm:text-4xl lg:text-[2.8125rem]">
+            <span className="mono-tag text-xs text-[var(--accent-teal-text)]">[ ENGINEERING PROCESS ]</span>
+            <h2 className="mt-6 max-w-[13ch] text-[1.6875rem] font-semibold leading-[1.02] text-white sm:text-4xl lg:text-[2.8125rem]">
               From requirements to working systems.
             </h2>
           </motion.div>
@@ -84,7 +84,7 @@ export function Methodology() {
       {/* 3. Four process stages — the detail (proof) */}
       <div className="mx-auto w-[var(--container)] pb-24 sm:pb-28">
         <motion.div
-          className="mt-14 grid overflow-hidden rounded-[8px] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.075),rgba(255,255,255,0.025)),rgba(7,7,15,0.72)] shadow-[0_36px_120px_rgba(0,0,0,0.38),0_0_72px_rgba(100,92,255,0.08)] backdrop-blur-2xl lg:grid-cols-[1.05fr_0.95fr]"
+          className="mt-14 grid overflow-hidden rounded-[16px] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.075),rgba(255,255,255,0.025)),rgba(7,7,15,0.72)] shadow-[0_36px_120px_rgba(0,0,0,0.38),0_0_72px_rgba(var(--accent-violet-rgb),0.08)] backdrop-blur-2xl lg:grid-cols-[1.05fr_0.95fr]"
           initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.05 }}
@@ -103,12 +103,12 @@ export function Methodology() {
                   viewport={{ once: true, amount: 0.55 }}
                   transition={{ duration: 0.62, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-[8px] border border-white/10 bg-white/[0.055] text-cyan-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-[16px] border border-white/10 bg-white/[0.055] text-[var(--accent-teal-text)] shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
                     <Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.7} />
                   </div>
                   <div>
                     <div className="flex items-baseline gap-3">
-                      <span className="mono-tag text-[0.68rem] text-cyan-200/60">{stage.number}</span>
+                      <span className="mono-tag text-[0.68rem] text-[var(--accent-teal-text)]">{stage.number}</span>
                       <h3 className="m-0 text-lg font-bold text-white">{stage.title}</h3>
                     </div>
                     <p className="mt-3 text-sm leading-6 text-slate-300/68">{stage.body}</p>
@@ -125,16 +125,16 @@ export function Methodology() {
                 I work across interface, service, and data boundaries. I trace requirements through the implementation, diagnose failures, and make tradeoffs with the whole system in view.
               </p>
             </div>
-            <div className="mt-10 border-l-2 border-[#2DD4C2]/55 pl-5 text-sm leading-6 text-slate-300/75">
+            <div className="mt-10 border-l-2 border-[var(--accent-teal)] pl-5 text-sm leading-6 text-slate-300/75">
               Clear contracts. Inspectable logic. Repeatable releases.
             </div>
           </div>
         </motion.div>
 
-        <div className="mt-4 grid overflow-hidden rounded-[8px] border border-white/[0.08] bg-white/[0.025] md:grid-cols-3 md:divide-x md:divide-white/[0.08]">
+        <div className="mt-4 grid overflow-hidden rounded-[16px] border border-white/[0.08] bg-white/[0.025] md:grid-cols-3 md:divide-x md:divide-white/[0.08]">
           {operatingPrinciples.map((principle) => (
             <div className="border-b border-white/[0.08] px-6 py-5 last:border-b-0 md:border-b-0" key={principle.label}>
-              <span className="mono-tag text-[0.68rem] text-cyan-200/60">{principle.label}</span>
+              <span className="mono-tag text-[0.68rem] text-[var(--accent-teal-text)]">{principle.label}</span>
               <strong className="mt-2 block text-sm font-semibold text-slate-200">{principle.value}</strong>
             </div>
           ))}
