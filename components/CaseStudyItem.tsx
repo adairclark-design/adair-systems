@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import PreviewImage from "./PreviewImage";
 import { createPortal } from "react-dom";
 
 const captions: Record<string, string> = {
@@ -70,12 +71,14 @@ function ScreenshotViewer({ images, title, initial, onClose }: {
 export default function CaseStudyItem({id,index,kicker,title,outcome,tags=[],images=[],layers,children}:Props) {
   const [active,setActive]=useState<number|null>(null);
   const phones=id==="tdt-training";
-  const lead=phones?[0,1,3]:[id==="acrelogic"?2:0];
+  const [selected,select]=useState(id==="acrelogic"?2:0);
+  const lead=phones?[0,1,3]:[selected];
   return <article id={id} className="work-spread">
     <header><small>{index} / {kicker}</small><h3>{title}</h3><p>{children}</p></header>
     <div className="work-grid"><div>
-      <div className={phones?"work-lead phones":"work-lead"}>{lead.map(i=><button type="button" key={i} onClick={()=>setActive(i)} aria-label={"Inspect "+captions[images[i]]}><img src={images[i]} loading="lazy" alt={captions[images[i]]}/></button>)}</div>
-      <div className="work-index">{images.map((src,i)=>lead.includes(i)?null:<button type="button" key={src} onClick={()=>setActive(i)}><img src={src} alt="" loading="lazy" /><small>{String(i+1).padStart(2,"0")}</small><span>{captions[src]}</span><i aria-hidden="true">↗</i></button>)}</div>
+      <div className={phones?"work-lead phones":"work-lead"}>{lead.map(i=><button type="button" key={i} onClick={()=>setActive(i)} aria-haspopup="dialog" aria-label={"Enlarge "+captions[images[i]]}><PreviewImage sizes={phones?"190px":undefined} src={images[i]} loading="lazy" alt={captions[images[i]]}/></button>)}</div>
+      <p className="gallery-caption" aria-live="polite">{phones?"Client dashboard / Workout / Nutrition":captions[images[selected]]} · Select image to enlarge</p>
+      <div className="work-index">{images.map((src,i)=>phones && lead.includes(i)?null:<button type="button" key={src} aria-pressed={phones?undefined:selected===i} aria-haspopup={phones?"dialog":undefined} aria-label={(phones?"Enlarge ":"Preview ")+captions[src]} onClick={()=>phones?setActive(i):select(i)}><PreviewImage thumbnail src={src} alt="" loading="lazy" /><small>{String(i+1).padStart(2,"0")}</small><span>{captions[src]}</span><i aria-hidden="true">{phones?"⤢":selected===i?"✓":"→"}</i></button>)}</div>
     </div><div className="work-notes"><small>SYSTEM LAYERS</small><dl>{layers.map((v,i)=><div key={v}><dt>{["Interface","Service","Data"][i]}</dt><dd>{v}</dd></div>)}</dl><small>WORKFLOW OUTCOME</small><p>{outcome}</p><div className="layer-tags">{tags.map(t=><span key={t}>{t}</span>)}</div></div></div>
     {active!==null&&<ScreenshotViewer images={images} title={title} initial={active} onClose={()=>setActive(null)}/>}
   </article>;

@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { SectionHeading } from "./SectionHeading";
 import CaseStudyItem from "@/components/CaseStudyItem";
 
 const caseStudies = [
@@ -9,7 +7,7 @@ const caseStudies = [
     title: "PolyVision Integration",
     description: "I built market data ingestion, API integration, alert delivery, and the interface for monitoring live market activity.",
     id: "polyvision",
-    layers: ["Filter the live feed or inspect a trader profile.", "Ingest market updates and deliver alerts.", "Market prices, liquidity and trader profit or loss."],
+    layers: ["Feed filters control which market updates appear alongside the trader ranking.", "Market ingestion supplies the monitoring view; alert delivery is a separate output.", "Market records carry price and liquidity; trader rankings use profit and loss."],
     outcome: "Follow a market move from the feed to its market and trader context.",
     tags: ["Data ingestion", "API architecture", "Real-time interfaces"],
     images: [
@@ -23,7 +21,7 @@ const caseStudies = [
     title: "AcreLogic",
     description: "I built a planning interface that connects agricultural data, search, and business rules in one application.",
     id: "acrelogic",
-    layers: ["Search the crop catalog and lay out beds on a field map.", "Apply planning rules to block dimensions.", "Crop requirements, planting blocks and bed dimensions."],
+    layers: ["The crop catalog exposes growing requirements; the map editor captures planting blocks and their dimensions.", "Planning rules translate block dimensions into a bed layout.", "Crop requirements describe what can be planted; field geometry describes the space available."],
     outcome: "Plan the beds against the field layout with crop requirements at hand.",
     tags: ["Data architecture", "Planning rules", "Data-rich UX"],
     images: [
@@ -37,7 +35,7 @@ const caseStudies = [
     title: "TDT Training",
     description: "I built onboarding, workout tracking, and training and nutrition workflows across a connected client platform.",
     id: "tdt-training",
-    layers: ["Move between the assigned workout, food log and training calendar.", "Calculate nutrient totals from the selected food and portion.", "Workout prescriptions, food entries and daily targets."],
+    layers: ["The client dashboard brings assigned workouts and daily nutrition targets into one view.", "Portion changes recalculate nutrients before a food entry contributes to daily totals.", "Workout prescriptions describe sets and repetitions; food entries track amounts against daily targets."],
     outcome: "Compare logged food with the daily target alongside the prescribed training.",
     tags: ["Full-stack development", "Calculation pipelines", "Client workflows"],
     images: [
@@ -54,7 +52,7 @@ const caseStudies = [
     title: "RappConsulting",
     description: "I designed and implemented the responsive site, content structure, and contact flows for an executive consulting practice.",
     id: "rappconsulting",
-    layers: ["Browse service details, grant strategy and team profiles.", "Route readers from a consulting specialty to a contact path.", "Service descriptions and consultant profiles form the content structure."],
+    layers: ["A responsive page hierarchy separates service detail, grant strategy and team profiles.", "Contact links connect service pages to an inquiry path.", "Service descriptions and team biographies are editorial content."],
     outcome: "Move from a consulting need to a relevant offering and a way to get in touch.",
     tags: ["Responsive interfaces", "Content architecture", "B2B web development"],
     images: [
@@ -66,39 +64,6 @@ const caseStudies = [
   }
 ];
 
-function ScrollWords({ text }: { text: string }) {
-  return (
-    <motion.span
-      className="word-reveal scroll-word-reveal"
-      initial={false}
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.8 }}
-      variants={{
-        hidden: {},
-        visible: { transition: { staggerChildren: 0.045 } }
-      }}
-    >
-      {text.split(" ").map((word, index) => (
-        <motion.span
-          className="reveal-word"
-          key={`${word}-${index}`}
-          variants={{
-            hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
-            visible: {
-              opacity: 1,
-              y: 0,
-              filter: "blur(0px)",
-              transition: { duration: 0.68, ease: [0.16, 1, 0.3, 1] }
-            }
-          }}
-        >
-          {word}
-        </motion.span>
-      ))}
-    </motion.span>
-  );
-}
-
 export function CaseStudy() {
   return (
     <section className="featured-section" id="featured-architecture" data-reveal>
@@ -106,31 +71,8 @@ export function CaseStudy() {
         +
       </span>
       <div className="featured-heading">
-        <motion.span
-          className="section-kicker mono-tag"
-          initial={false}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.8 }}
-          transition={{ duration: 0.66, ease: [0.16, 1, 0.3, 1] }}
-        >
-          [ PORTFOLIO ]
-        </motion.span>
-        <motion.h2
-          initial={false}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.72 }}
-          transition={{ duration: 0.76, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <ScrollWords text="Systems in production." />
-        </motion.h2>
-        <motion.p
-          initial={false}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.72 }}
-          transition={{ duration: 0.76, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Selected work across market data, agricultural planning, training platforms, and B2B web experiences.
-        </motion.p>
+        <SectionHeading label="Selected work" title="Systems in production." />
+        <p>Four systems, from market monitoring to field planning. Select a screen to inspect the work.</p>
       </div>
       <div className="relative z-[1] mx-auto w-[var(--container)]">
         {caseStudies.map((project, index) => (

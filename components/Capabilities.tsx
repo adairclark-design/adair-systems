@@ -1,7 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
-
+import { SectionHeading } from "./SectionHeading";
 const capabilities = [
   {
     meta: "[ FRONTEND & PRODUCT ]",
@@ -34,9 +31,9 @@ const capabilities = [
 ];
 
 const artifacts = [
-  [["Surface","Web / mobile"],["View","React + TypeScript"],["Presentation","Responsive CSS"]],
-  [["Source","Market feed"],["Transport","REST / WebSocket"],["Consumer","Feed / alert"]],
-  [["Input","Food × portion"],["Calculation","Scale nutrients"],["Output","Daily totals"]],
+  [["Surface","Next.js / React Native"],["State","Typed view props"],["Layout","Responsive CSS"]],
+  [["Boundary","Request / response contracts"],["Transport","REST / WebSocket"],["Runtime","Python / Node.js"]],
+  [["Structure","Relational records"],["Constraints","Keys / relationships"],["Logic","Rules / calculations"]],
   [["Contract","Acceptance criteria"],["Verification","Integration tests"],["Release","Static / cloud"]]
 ];
 export function Capabilities() {
@@ -46,10 +43,7 @@ export function Capabilities() {
         +
       </span>
       <div className="capabilities-heading">
-        <motion.h2
-        >
-          Engineering across the stack.
-        </motion.h2>
+        <SectionHeading label="Capabilities" title="Engineering across the stack." />
       </div>
       <div className="bento-grid grid-cols-1 md:grid-cols-3">
         {capabilities.map((capability, index) => (

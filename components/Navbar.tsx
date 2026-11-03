@@ -12,16 +12,14 @@ function BrandLogo() {
       href="#home"
       aria-label={`${brandName} home`}
     >
-      <div className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-[16px] border border-white/10 bg-[#09090E] shadow-[0_12px_32px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.15)] transition duration-500 group-hover:-translate-y-0.5 group-hover:border-white/20 group-hover:shadow-[0_16px_40px_rgba(0,0,0,0.7),0_0_48px_rgba(124,92,240,0.25),inset_0_1px_0_rgba(255,255,255,0.25)]">
-        {/* Subtle Aurora Inner Background */}
-        <span className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(31,182,166,0.25)_0%,transparent_50%),radial-gradient(circle_at_80%_80%,rgba(124,92,240,0.25)_0%,transparent_50%)]" />
+      <div className="brand-mark">
         <svg 
           viewBox="0 0 24 24" 
           fill="none" 
           strokeWidth={2} 
           strokeLinecap="round" 
           strokeLinejoin="round" 
-          className="relative z-10 h-7 w-7 drop-shadow-[0_0_12px_rgba(31,182,166,0.6)] transition duration-500 group-hover:scale-110" 
+          width="23" height="23"
           aria-hidden="true"
         >
           <defs>
@@ -56,18 +54,7 @@ function BrandLogo() {
         </svg>
       </div>
 
-      <span 
-        className="ml-1 whitespace-nowrap text-[1.05rem] font-bold tracking-tight sm:text-[1.35rem]"
-        style={{
-          background: 'linear-gradient(to right, #1FB6A6, #9B84F5, #7C5CF0)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          color: 'transparent'
-        }}
-      >
-        Adair Systems
-      </span>
+      <span className="brand-name">Adair Systems</span>
     </a>
   );
 }
