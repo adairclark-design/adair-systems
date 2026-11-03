@@ -24,7 +24,7 @@ const captions: Record<string, string> = {
 
 type Props = {
   index: string; kicker: string; title: string; outcome?: string;
-  tags?: string[]; images?: string[]; defaultOpen?: boolean; children: ReactNode;
+  tags?: string[]; images?: string[]; id: string; layers: string[]; children: ReactNode;
 };
 
 function ScreenshotViewer({ images, title, initial, onClose }: {
@@ -67,33 +67,16 @@ function ScreenshotViewer({ images, title, initial, onClose }: {
   );
 }
 
-export default function CaseStudyItem({ index, kicker, title, outcome, tags = [], images = [], defaultOpen = false, children }: Props) {
-  const [open, setOpen] = useState(defaultOpen);
-  const [activeImage, setActiveImage] = useState<number | null>(null);
-  const panelId = `case-panel-${index}`;
-  return <article className={`case${open ? " case--open" : ""}`}>
-    <h3 className="case__heading">
-      <button type="button" className="case__head" aria-expanded={open} aria-controls={panelId}
-        id={`${panelId}-heading`} onClick={() => setOpen(value => !value)}>
-        <span className="case__cover" aria-hidden="true"><img src={images[0]} alt="" loading="lazy" /></span>
-        <span className="case__meta"><span className="case__kicker">{index} / {kicker}</span><span className="case__title">{title}</span><span className="case__scope">{tags.join(" · ")}</span></span>
-        <span className="case__toggle" aria-hidden="true" />
-      </button>
-    </h3>
-    <div id={panelId} className="case__panel" role="region" aria-labelledby={`${panelId}-heading`} hidden={!open}>
-      <div className="case__inner">
-        <p className="case__body">{children}</p>
-        {outcome && <p className="case__outcome">{outcome}</p>}
-        <ul className="case__tags">{tags.map(tag => <li key={tag}>{tag}</li>)}</ul>
-        {open && images.length > 0 && <div className="case__gallery-grid" data-count={images.length} aria-label={`${title} screenshots`}>
-          {images.map((src, i) => <button key={src} className={`case__frame${i === 0 && images.length !== 4 ? " case__frame--featured" : ""}`}
-            type="button" onClick={() => setActiveImage(i)} aria-label={`Open ${title} screenshot ${i + 1}`}>
-            <img src={src} alt={`${title}: ${captions[src]}`} loading="lazy" />
-            <span aria-hidden="true">{captions[src]} ↗</span>
-          </button>)}
-        </div>}
-      </div>
-    </div>
-    {activeImage !== null && <ScreenshotViewer images={images} title={title} initial={activeImage} onClose={() => setActiveImage(null)} />}
+export default function CaseStudyItem({id,index,kicker,title,outcome,tags=[],images=[],layers,children}:Props) {
+  const [active,setActive]=useState<number|null>(null);
+  const phones=id==="tdt-training";
+  const lead=phones?[0,1,3]:[id==="acrelogic"?2:0];
+  return <article id={id} className="work-spread">
+    <header><small>{index} / {kicker}</small><h3>{title}</h3><p>{children}</p></header>
+    <div className="work-grid"><div>
+      <div className={phones?"work-lead phones":"work-lead"}>{lead.map(i=><button type="button" key={i} onClick={()=>setActive(i)} aria-label={"Inspect "+captions[images[i]]}><img src={images[i]} loading="lazy" alt={captions[images[i]]}/></button>)}</div>
+      <div className="work-index">{images.map((src,i)=>lead.includes(i)?null:<button type="button" key={src} onClick={()=>setActive(i)}><img src={src} alt="" loading="lazy" /><small>{String(i+1).padStart(2,"0")}</small><span>{captions[src]}</span><i aria-hidden="true">↗</i></button>)}</div>
+    </div><div className="work-notes"><small>SYSTEM LAYERS</small><dl>{layers.map((v,i)=><div key={v}><dt>{["Interface","Service","Data"][i]}</dt><dd>{v}</dd></div>)}</dl><small>WORKFLOW OUTCOME</small><p>{outcome}</p><div className="layer-tags">{tags.map(t=><span key={t}>{t}</span>)}</div></div></div>
+    {active!==null&&<ScreenshotViewer images={images} title={title} initial={active} onClose={()=>setActive(null)}/>}
   </article>;
 }

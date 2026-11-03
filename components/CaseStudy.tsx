@@ -6,9 +6,11 @@ import CaseStudyItem from "@/components/CaseStudyItem";
 const caseStudies = [
   {
     eyebrow: "Real-time market systems",
-    title: "Polyvision Integration",
+    title: "PolyVision Integration",
     description: "I built market data ingestion, API integration, alert delivery, and the interface for monitoring live market activity.",
-    outcome: "Market feeds and alerts are brought into one monitoring workflow.",
+    id: "polyvision",
+    layers: ["Filter the live feed or inspect a trader profile.", "Ingest market updates and deliver alerts.", "Market prices, liquidity and trader profit or loss."],
+    outcome: "Follow a market move from the feed to its market and trader context.",
     tags: ["Data ingestion", "API architecture", "Real-time interfaces"],
     images: [
       "/project-images/PolyVision 2.png",
@@ -20,7 +22,9 @@ const caseStudies = [
     eyebrow: "Agricultural planning software",
     title: "AcreLogic",
     description: "I built a planning interface that connects agricultural data, search, and business rules in one application.",
-    outcome: "Search, planning inputs, and supporting data share one workspace.",
+    id: "acrelogic",
+    layers: ["Search the crop catalog and lay out beds on a field map.", "Apply planning rules to block dimensions.", "Crop requirements, planting blocks and bed dimensions."],
+    outcome: "Plan the beds against the field layout with crop requirements at hand.",
     tags: ["Data architecture", "Planning rules", "Data-rich UX"],
     images: [
       "/project-images/AcreLogic 1.png",
@@ -32,7 +36,9 @@ const caseStudies = [
     eyebrow: "Training & nutrition platform",
     title: "TDT Training",
     description: "I built onboarding, workout tracking, and training and nutrition workflows across a connected client platform.",
-    outcome: "Client onboarding, training, and nutrition workflows are available in one platform.",
+    id: "tdt-training",
+    layers: ["Move between the assigned workout, food log and training calendar.", "Calculate nutrient totals from the selected food and portion.", "Workout prescriptions, food entries and daily targets."],
+    outcome: "Compare logged food with the daily target alongside the prescribed training.",
     tags: ["Full-stack development", "Calculation pipelines", "Client workflows"],
     images: [
       "/project-images/TDT 1.png",
@@ -47,7 +53,9 @@ const caseStudies = [
     eyebrow: "B2B web platform",
     title: "RappConsulting",
     description: "I designed and implemented the responsive site, content structure, and contact flows for an executive consulting practice.",
-    outcome: "Services and contact pathways are presented in a cohesive responsive experience.",
+    id: "rappconsulting",
+    layers: ["Browse service details, grant strategy and team profiles.", "Route readers from a consulting specialty to a contact path.", "Service descriptions and consultant profiles form the content structure."],
+    outcome: "Move from a consulting need to a relevant offering and a way to get in touch.",
     tags: ["Responsive interfaces", "Content architecture", "B2B web development"],
     images: [
       "/project-images/RAPP 2.png",
@@ -134,7 +142,7 @@ export function CaseStudy() {
             outcome={project.outcome}
             tags={project.tags}
             images={project.images}
-            defaultOpen={index === 0}
+            id={project.id} layers={project.layers}
           >
             {project.description}
           </CaseStudyItem>

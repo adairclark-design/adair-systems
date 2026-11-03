@@ -33,6 +33,12 @@ const capabilities = [
   }
 ];
 
+const artifacts = [
+  [["Surface","Web / mobile"],["View","React + TypeScript"],["Presentation","Responsive CSS"]],
+  [["Source","Market feed"],["Transport","REST / WebSocket"],["Consumer","Feed / alert"]],
+  [["Input","Food × portion"],["Calculation","Scale nutrients"],["Output","Daily totals"]],
+  [["Contract","Acceptance criteria"],["Verification","Integration tests"],["Release","Static / cloud"]]
+];
 export function Capabilities() {
   return (
     <section className="capabilities-section" id="capabilities" data-reveal>
@@ -54,7 +60,7 @@ export function Capabilities() {
             <span className="mono-tag bento-meta">{capability.meta}</span>
             <h3>{capability.title}</h3>
             <p>{capability.body}</p>
-            <span className="bento-stat">{capability.stat}</span>
+            <dl className="tech-matrix">{artifacts[index].map(([key,value])=><div key={key}><dt>{key}</dt><dd>{value}</dd></div>)}</dl><span className="bento-stat">{capability.stat}</span>
           </article>
         ))}
       </div>
